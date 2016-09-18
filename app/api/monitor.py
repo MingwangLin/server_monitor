@@ -23,18 +23,22 @@ def charts_data():
     offset = int(offset)
     cursor = db.cpu.find().sort("timestamp", pymongo.DESCENDING)
     cpu_load = []
+    cpu_load_time = []
     cpu_load_time_start = ''
     i = 0
     for document in cursor:
         if i < offset:
             cpu_load_data = document.get('cpu_load')
+            timestamp = document.get('timestamp')
             cpu_load.insert(0, cpu_load_data)
+            cpu_load_time.insert(0, timestamp) # CPU每秒负载对应的时间点
             cpu_load_time_start = document.get('timestamp')  # 图表头时间点
             i += 1
         else:
             break
     data = {
         'cpu_load': cpu_load,
+        'cpu_load_time': cpu_load_time,
         'cpu_load_time_start': cpu_load_time_start,
         'success': True,
     }

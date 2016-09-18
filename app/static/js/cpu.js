@@ -13,13 +13,13 @@ var __main = function() {
 var setup = function() {
 
     var cpuLoadLiveUrl = '/dashboard/data?offset=10';
-    get(cpuLoadLiveUrl, response=cpuLoadLive, $target=$('#id-div-cpu-live'));
+    get(cpuLoadLiveUrl, response=cpuLoadLive, $target=$('#id-canvas-cpu-live'));
     var cpuLoadOneHourUrl = '/dashboard/data?offset=3600';
     get(cpuLoadOneHourUrl, response=cpuLoadPeriod, $target=$('#id-div-cpu-onehour'));
     var cpuLoadOneDayUrl = '/dashboard/data?offset=896400';
     get(cpuLoadOneDayUrl, response=cpuLoadPeriod, $target=$('#id-div-cpu-oneday'));
     var tabAction = function (cpuLive, cpuOneHour, cpuOneDay) {
-        $('#id-div-cpu-live').toggle(cpuLive);
+        $('#id-canvas-cpu-live').toggle(cpuLive);
         $('#id-div-cpu-onehour').toggle(cpuOneHour);
         $('#id-div-cpu-oneday').toggle(cpuOneDay);
         };
@@ -64,7 +64,7 @@ var cpuLoadLive = function(data, $target){
     var label = data.cpu_load_time;
     // log('tim', label);
     for (var i = 0; i < label.length; i++) {
-      label[i] = formatted_time(label[i]*1000)
+      label[i] = formatted_time(label[i])
       // log('label', label[i])
     };
     var barChartData = {
@@ -109,8 +109,17 @@ var cpuLoadPeriod = function(data, $target){
         },
         xAxis: {
                 type: 'datetime',
-
+                dateTimeLabelFormats: {
+                    second: '%H:%M:%S',
+	                minute: '%H:%M',
+                    hour: '%H:%M',
+                    day: '%e. %b',
+                    week: '%e. %b',
+                    month: '%b \'%y',
+                    year: '%Y'
+                }
             },
+
         yAxis: {
                 title: {
                     text: 'CPU load rate (%)'

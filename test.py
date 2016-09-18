@@ -46,7 +46,7 @@ def find_all_docments():
 
 
 def main():
-    #db.cpu.delete_many({})
+    # db.cpu.delete_many({})
     output = server_info_output()
     save_to_db(output)
     # find_all_docments()
