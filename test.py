@@ -25,7 +25,7 @@ def save_to_db(output):
         # # log(o)
         # cpu_idle_index = -1
         # cpu_idle = o[cpu_idle_index]
-        if o[0] not in ('L', 'a', 'd', 'v'):  # 通过字符串首字母滤掉不包含CPU信息的行
+        if o[0] not in ('L', 'a', 'D', 'v'):  # 通过字符串首字母滤掉不包含CPU信息的行
             # cpu_idle_index = -4
             # cpu_idle = o[cpu_idle_index]
             # if cpu_idle != 'disk3' and cpu_idle != 'id':
