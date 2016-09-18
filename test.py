@@ -21,16 +21,19 @@ def server_info_output():
 
 def save_to_db(output):
     for o in output:
-        o = o.split()
-        # log(o)
-        cpu_idle_index = -1
-        cpu_idle = o[cpu_idle_index]
-        if o[0] != 'Device:' and o[0] != 'vda':  # 滤掉不包含CPU信息的行
-        # cpu_idle_index = -4
+        # o = o.split()
+        # # log(o)
+        # cpu_idle_index = -1
         # cpu_idle = o[cpu_idle_index]
-        # if cpu_idle != 'disk3' and cpu_idle != 'id':
+        if o[0] not in ('L', 'a', 'd', 'v'):  # 通过字符串首字母滤掉不包含CPU信息的行
+            # cpu_idle_index = -4
+            # cpu_idle = o[cpu_idle_index]
+            # if cpu_idle != 'disk3' and cpu_idle != 'id':
+            o = o.split()
+            cpu_idle_index = -1
+            cpu_idle = o[cpu_idle_index]
             total = 100
-            timestamp = int(time.time()*1000)
+            timestamp = int(time.time() * 1000)
             cpu_load = total - int(cpu_idle)
             log(cpu_idle)
             log(timestamp)
