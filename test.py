@@ -30,19 +30,20 @@ def save_to_db(output):
             # cpu_idle = o[cpu_idle_index]
             # if cpu_idle != 'disk3' and cpu_idle != 'id':
             o = o.split()
-            cpu_idle_index = -1
-            cpu_idle = o[cpu_idle_index]
-            total = 100
-            timestamp = int(time.time() * 1000)
-            cpu_load = total - int(cpu_idle)
-            log(cpu_idle)
-            log(timestamp)
-            db.cpu.insert_one(
-                {
-                    "cpu_load": cpu_load,
-                    "timestamp": timestamp,
-                }
-            )
+            if len(o) > 0:
+                cpu_idle_index = -1
+                cpu_idle = o[cpu_idle_index]
+                total = 100
+                timestamp = int(time.time() * 1000)
+                cpu_load = total - int(cpu_idle)
+                log(cpu_idle)
+                log(timestamp)
+                db.cpu.insert_one(
+                    {
+                        "cpu_load": cpu_load,
+                        "timestamp": timestamp,
+                    }
+                )
 
 
 def find_all_docments():
