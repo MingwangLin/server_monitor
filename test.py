@@ -23,9 +23,12 @@ def save_to_db(output):
     for o in output:
         o = o.split()
         # log(o)
-        cpu_idle_index = -4
+        cpu_idle_index = -1
         cpu_idle = o[cpu_idle_index]
-        if cpu_idle != 'disk3' and cpu_idle != 'id':
+        if o[0] != 'Device:' and o[0] != 'vda':  # 滤掉不包含CPU信息的行
+        # cpu_idle_index = -4
+        # cpu_idle = o[cpu_idle_index]
+        # if cpu_idle != 'disk3' and cpu_idle != 'id':
             total = 100
             timestamp = int(time.time()*1000)
             cpu_load = total - int(cpu_idle)
