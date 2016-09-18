@@ -11,12 +11,16 @@ var __main = function() {
   }
 
 var setup = function() {
-
-    var cpuLoadLiveUrl = '/dashboard/data?offset=10';
+    Highcharts.setOptions({
+        global: {
+            useUTC: false
+        }
+    });
+    var cpuLoadLiveUrl = '/dashboard/data?limit=10';
     get(cpuLoadLiveUrl, response=cpuLoadLive, $target=$('#id-canvas-cpu-live'));
-    var cpuLoadOneHourUrl = '/dashboard/data?offset=3600';
+    var cpuLoadOneHourUrl = '/dashboard/data?limit=3600';
     get(cpuLoadOneHourUrl, response=cpuLoadPeriod, $target=$('#id-div-cpu-onehour'));
-    var cpuLoadOneDayUrl = '/dashboard/data?offset=896400';
+    var cpuLoadOneDayUrl = '/dashboard/data?limit=896400';
     get(cpuLoadOneDayUrl, response=cpuLoadPeriod, $target=$('#id-div-cpu-oneday'));
     var tabAction = function (cpuLive, cpuOneHour, cpuOneDay) {
         $('#id-canvas-cpu-live').toggle(cpuLive);
@@ -51,7 +55,7 @@ var setup = function() {
 
 var updateChart = function() {
     // 请求实时单个cpu负载数据
-    var CpuLoadUrl = '/dashboard/data?offset=1';
+    var CpuLoadUrl = '/dashboard/data?limit=1';
     setInterval(function() {
     barChartDemo.removeData();
     get(CpuLoadUrl, updateCpuLoad)
@@ -92,15 +96,11 @@ var cpuLoadLive = function(data, $target){
 
 var cpuLoadPeriod = function(data, $target){
    if(data.success) {
-    var cpuload = data.cpu_load;
+    var cpuload = data.cpu_load_couples;
     var timestamp = data.cpu_load_time_start;
     log('timestamp', timestamp);
-    Highcharts.setOptions({
-        global: {
-            useUTC: false
-        }
-    });
     $target.highcharts({
+
         chart: {
                 zoomType: 'x'
             },
@@ -108,6 +108,7 @@ var cpuLoadPeriod = function(data, $target){
             text: 'CPU load Chart'
         },
         xAxis: {
+
                 type: 'datetime',
                 dateTimeLabelFormats: {
                     second: '%H:%M:%S',
@@ -123,30 +124,24 @@ var cpuLoadPeriod = function(data, $target){
         yAxis: {
                 title: {
                     text: 'CPU load rate (%)'
-                }
+                },
+
             },
         legend: {
                 enabled: false
             },
         plotOptions: {
-                area: {
-                    marker: {
-                        radius: 2
-                    },
-                    lineWidth: 1,
-                    states: {
-                        hover: {
-                            lineWidth: 1
-                        }
-                    },
+                series: {
+                states: {
+                    hover: {
+                        enabled: false
+                    }
                 }
-            },
+            }
+        },
         series: [{
-            type: 'area',
             name: 'CPU load rate (%)',
             data: cpuload,
-            pointStart: timestamp,
-            pointInterval: 1000 // one second
         }]
     });
 }else {

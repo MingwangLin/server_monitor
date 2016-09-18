@@ -19,40 +19,29 @@ def homepage_view():
 @api.route('/dashboard/data', methods=['GET'])
 def charts_data():
     args = request.args
-    offset = args.get('offset', '')
-    offset = int(offset)
+    limit = args.get('limit', '')
+    log('limit', limit)
+    limit = int(limit)
     cursor = db.cpu.find().sort("timestamp", pymongo.DESCENDING)
-    cpu_load = []
-    cpu_load_time = []
-    cpu_load_time_start = ''
+    cpu_load = []  # 列表中的元素为CPU每秒负载率
+    cpu_load_time = []  # 列表中的元素为CPU每秒负载率对应的时间点
+    cpu_load_couples = []  # 列表中的元素为子列表，每个子列表有2个元素：CPU每秒负载率以及其对应的时间点
     i = 0
     for document in cursor:
-        if i < offset:
-            cpu_load_data = document.get('cpu_load')
-            timestamp = document.get('timestamp')
+        if i < limit:
+            cpu_load_data = document.get('cpu_load')  # CPU每秒负载率
+            timestamp = document.get('timestamp') # CPU每秒负载率对应的时间点
             cpu_load.insert(0, cpu_load_data)
-            cpu_load_time.insert(0, timestamp) # CPU每秒负载对应的时间点
-            cpu_load_time_start = document.get('timestamp')  # 图表头时间点
+            cpu_load_time.insert(0, timestamp)
+            cpu_load_couples.insert(0, [timestamp, cpu_load_data])
             i += 1
         else:
             break
     data = {
         'cpu_load': cpu_load,
         'cpu_load_time': cpu_load_time,
-        'cpu_load_time_start': cpu_load_time_start,
+        'cpu_load_couples': cpu_load_couples,
         'success': True,
     }
-    log('cpu_load_time_start', cpu_load_time_start)
     return jsonify(data)
 
-# # 实时更新 dashboard 数据
-# @api.route('/dashboard/data/update', methods=['GET'])
-# def new_data_per_second():
-#     cursor = db.cpu.find().sort("timestamp", pymongo.DESCENDING)
-#     cpu_load = cursor[0].get('cpu_load')
-#     data = {
-#         'cpu_load': cpu_load,
-#         'success': True,
-#     }
-#     log('data', data)
-#     return jsonify(data)
