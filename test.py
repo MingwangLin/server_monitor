@@ -37,7 +37,6 @@ def save_to_db(output):
                 timestamp = int(time.time() * 1000)
                 cpu_load = total - float(cpu_idle)
                 cpu_load = round(cpu_load, 2)
-                log(timestamp)
                 db.cpu.insert_one(
                     {
                         "cpu_load": cpu_load,
