@@ -16,11 +16,11 @@ var setup = function() {
             useUTC: false
         }
     });
-    var cpuLoadLiveUrl = '/dashboard/data?limit=10';
+    var cpuLoadLiveUrl = 'dashboard/data?limit=10';
     get(cpuLoadLiveUrl, response=cpuLoadLive, $target=$('#id-canvas-cpu-live'));
-    var cpuLoadOneHourUrl = '/dashboard/data?limit=3600';
+    var cpuLoadOneHourUrl = 'dashboard/data?limit=3600';
     get(cpuLoadOneHourUrl, response=cpuLoadPeriod, $target=$('#id-div-cpu-onehour'));
-    var cpuLoadOneDayUrl = '/dashboard/data?limit=896400';
+    var cpuLoadOneDayUrl = 'dashboard/data?limit=896400';
     get(cpuLoadOneDayUrl, response=cpuLoadPeriod, $target=$('#id-div-cpu-oneday'));
     var tabAction = function (cpuLive, cpuOneHour, cpuOneDay) {
         $('#id-canvas-cpu-live').toggle(cpuLive);
@@ -55,7 +55,7 @@ var setup = function() {
 
 var updateChart = function() {
     // 请求实时单个cpu负载数据
-    var CpuLoadUrl = '/dashboard/data?limit=1';
+    var CpuLoadUrl = 'dashboard/data?limit=1';
     setInterval(function() {
     barChartDemo.removeData();
     get(CpuLoadUrl, updateCpuLoad)

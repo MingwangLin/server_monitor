@@ -16,7 +16,7 @@ def homepage_view():
 
 
 # 请求首页数据， 显示dashboard
-@api.route('dashboard/data', methods=['GET'])
+@api.route('/dashboard/data', methods=['GET'])
 def charts_data():
     args = request.args
     limit = args.get('limit', '')
