@@ -12,14 +12,40 @@ def log(*args):
     print(tt, *args)
 
 
-def server_info_output():
-    cmd = ['iostat 1']
+def cpu_info_output():
+    cmd = ['iostat 5']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     output = (line.decode('utf-8') for line in pipe.stdout)
     return output
 
 
-def save_to_db(output):
+def ram_info_output():
+    cmd = ['vmstat 5']
+    pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    output = (line.decode('utf-8') for line in pipe.stdout)
+    return output
+
+
+def save_ram_info(output):
+    for o in output:
+        if o[0] not in ('p', 'r'):  # 通过字符串首字母滤掉不包含RAM信息的行
+            o = o.split()
+            if len(o) > 0:
+                ram_free_index = 3
+                ram_free = o[ram_free_index]
+                total_ram = 488000
+                timestamp = int(time.time() * 1000)
+                ram_load = (total_ram - ram_free) / total_ram
+                ram_load = round(ram_load, 2)
+                db.ram.insert_one(
+                    {
+                        "ram_load": ram_load,
+                        "timestamp": timestamp,
+                    }
+                )
+
+
+def save_cpu_info(output):
     for o in output:
         # o = o.split()
         # # log(o)
@@ -53,8 +79,9 @@ def find_all_docments():
 
 def main():
     # db.cpu.delete_many({})
-    output = server_info_output()
-    save_to_db(output)
+    cpu_info = cpu_info_output()
+    save_cpu_info(cpu_info)
+
     # find_all_docments()
 
 

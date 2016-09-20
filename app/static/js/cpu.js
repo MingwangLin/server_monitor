@@ -1,27 +1,11 @@
-
-
-$(document).ready(function(){
-        __main();
-});
-
-var __main = function() {
-    setup();
-    updateChart();
-    $('#id-button-cpu-live').click()
-  }
-
-var setup = function() {
-    Highcharts.setOptions({
-        global: {
-            useUTC: false
-        }
-    });
-    var cpuLoadLiveUrl = 'dashboard/data?limit=10';
+var CpuChartSetup = function() {
+    var cpuLoadLiveUrl = 'dashboard/cpu/data?limit=10';
     get(cpuLoadLiveUrl, response=cpuLoadLive, $target=$('#id-canvas-cpu-live'));
-    var cpuLoadOneHourUrl = 'dashboard/data?limit=3600';
+    var cpuLoadOneHourUrl = 'dashboard/cpu/data?limit=3600';
     get(cpuLoadOneHourUrl, response=cpuLoadPeriod, $target=$('#id-div-cpu-onehour'));
-    var cpuLoadOneDayUrl = 'dashboard/data?limit=896400';
+    var cpuLoadOneDayUrl = 'dashboard/cpu/data?limit=896400';
     get(cpuLoadOneDayUrl, response=cpuLoadPeriod, $target=$('#id-div-cpu-oneday'));
+
     var tabAction = function (cpuLive, cpuOneHour, cpuOneDay) {
         $('#id-canvas-cpu-live').toggle(cpuLive);
         $('#id-div-cpu-onehour').toggle(cpuOneHour);
@@ -53,9 +37,9 @@ var setup = function() {
         });
     };
 
-var updateChart = function() {
+var updateCpuChart = function() {
     // 请求实时单个cpu负载数据
-    var CpuLoadUrl = 'dashboard/data?limit=1';
+    var CpuLoadUrl = 'dashboard/cpu/data?limit=1';
     setInterval(function() {
     barChartDemo.removeData();
     get(CpuLoadUrl, updateCpuLoad)
@@ -105,7 +89,7 @@ var cpuLoadPeriod = function(data, $target){
                 zoomType: 'x'
             },
         title: {
-            text: 'CPU load Chart'
+            text: 'CPU load chart'
         },
         xAxis: {
 

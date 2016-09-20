@@ -69,10 +69,16 @@
       <div class="col-sm-6">
         <div class="chart-wrapper">
           <div class="chart-title">
-            Pageviews by browser (past 5 days)
+            <div class="btn-group-xs">RAM负载
+              <button type="button" id="id-button-ram-live" class="btn btn-default">实时</button>
+              <button type="button" id="id-button-ram-onehour" class="btn btn-default">过去1小时</button>
+              <button type="button" id="id-button-ram-oneday" class="btn btn-default">过去1天</button>
+            </div>
           </div>
           <div class="chart-stage">
-            <canvas id="id-disk-canvas"></canvas>
+            <canvas id="id-canvas-ram-live"></canvas>
+            <div id="id-div-ram-onehour"></div>
+            <div id="id-div-ram-oneday"></div>
           </div>
           <div class="chart-notes">
             Notes go down here
