@@ -34,6 +34,7 @@ def save_ram_info(output):
             if len(o) > 0:
                 ram_free_index = 3
                 ram_free = o[ram_free_index]
+                ram_free = int(ram_free)
                 total_ram = 488000
                 timestamp = int(time.time() * 1000)
                 ram_load = (total_ram - ram_free) / total_ram
