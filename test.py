@@ -37,6 +37,7 @@ def save_ram_info(output):
                 timestamp = int(time.time() * 1000)
                 ram_load = (total_ram - ram_free) / total_ram
                 ram_load = round(ram_load, 2)
+                log('ram_load', ram_load)
                 db.ram.insert_one(
                     {
                         "ram_load": ram_load,
@@ -63,6 +64,7 @@ def save_cpu_info(output):
                 timestamp = int(time.time() * 1000)
                 cpu_load = total - float(cpu_idle)
                 cpu_load = round(cpu_load, 2)
+                log('cpu_load', cpu_load)
                 db.cpu.insert_one(
                     {
                         "cpu_load": cpu_load,
