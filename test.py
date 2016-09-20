@@ -82,12 +82,12 @@ def find_all_docments():
 
 def main():
     # db.cpu.delete_many({})
-    cpu_info = cpu_info_output()
     ram_info = ram_info_output()
+    cpu_info = cpu_info_output()
     log(cpu_info)
     log(ram_info)
-    save_cpu_info(cpu_info)
     save_ram_info(ram_info)
+    save_cpu_info(cpu_info)
 
     # find_all_docments()
 
