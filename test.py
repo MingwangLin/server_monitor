@@ -14,15 +14,15 @@ def log(*args):
 
 def cpu_info_output():
     cmd = ['iostat 5']
-    pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    output = (line.decode('utf-8') for line in pipe.stdout)
+    cpu_pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    output = (line.decode('utf-8') for line in cpu_pipe.stdout)
     return output
 
 
 def ram_info_output():
     cmd = ['vmstat 5']
-    pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    output = (line.decode('utf-8') for line in pipe.stdout)
+    ram_pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    output = (line.decode('utf-8') for line in ram_pipe.stdout)
     return output
 
 
@@ -32,7 +32,6 @@ def save_ram_info(output):
         if len(o) > 0:
             ram_free_index = 3
             ram_free = o[ram_free_index]
-            log(o)
             if o[3] not in ('free', '-----io----'):  # 通过字符串首字母滤掉不包含RAM信息的行
                 ram_free = int(ram_free)
                 total_ram = 488000
