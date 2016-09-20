@@ -28,12 +28,12 @@ def ram_info_output():
 
 def save_ram_info(output):
     for o in output:
-        log(o)
-        if o[0] not in ('p', ' '):  # 通过字符串首字母滤掉不包含RAM信息的行
-            o = o.split()
-            if len(o) > 0:
-                ram_free_index = 3
-                ram_free = o[ram_free_index]
+        o = o.split()
+        if len(o) > 0:
+            ram_free_index = 3
+            ram_free = o[ram_free_index]
+            log(o)
+            if o[3] not in ('free', '-----io----'):  # 通过字符串首字母滤掉不包含RAM信息的行
                 ram_free = int(ram_free)
                 total_ram = 488000
                 timestamp = int(time.time() * 1000)
