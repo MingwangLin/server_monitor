@@ -42,7 +42,7 @@ var updateRamChart = function() {
     // 请求实时单个ram负载数据
     var RamLoadUrl = 'dashboard/ram/data?limit=1';
     setInterval(function() {
-    barChartDemo.removeData();
+    barRamChartDemo.removeData();
     get(RamLoadUrl, updateRamLoad)
     }, 1000);
     };
@@ -66,7 +66,7 @@ var ramLoadLive = function(data, $target){
     };
     log('t', $target)
     var ctx = $target[0].getContext("2d");
-    barChartDemo = new Chart(ctx).Bar(barChartData, {
+    barRamChartDemo = new Chart(ctx).Bar(barChartData, {
     responsive: true,
     barValueSpacing: 2,
     scaleOverride : true,

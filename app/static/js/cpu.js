@@ -41,7 +41,7 @@ var updateCpuChart = function() {
     // 请求实时单个cpu负载数据
     var CpuLoadUrl = 'dashboard/cpu/data?limit=1';
     setInterval(function() {
-    barChartDemo.removeData();
+    barCpuChartDemo.removeData();
     get(CpuLoadUrl, updateCpuLoad)
     }, 1000);
     };
@@ -65,7 +65,7 @@ var cpuLoadLive = function(data, $target){
     };
     log('t', $target)
     var ctx = $target[0].getContext("2d");
-    barChartDemo = new Chart(ctx).Bar(barChartData, {
+    barCpuChartDemo = new Chart(ctx).Bar(barChartData, {
     responsive: true,
     barValueSpacing: 2,
     scaleOverride : true,
@@ -135,9 +135,7 @@ var cpuLoadPeriod = function(data, $target){
 
 var updateCpuLoad = function(data){
   if(data.success) {
-    log('success', data);
     var cpuload = data.cpu_load;
-    log('data', data, typeof Number(data));
     timestamp = Date.now()
     barChartDemo.addData(cpuload, formatted_time(timestamp));
   }else {

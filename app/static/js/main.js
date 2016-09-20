@@ -12,6 +12,6 @@ var __main = function() {
     RamChartSetup();
     updateCpuChart();
     updateRamChart();
-    $('#id-button-cpu-live').click()
-    $('#id-button-ram-live').click()
+    $('#id-button-cpu-live').click();
+    $('#id-button-ram-live').click();
   }
