@@ -137,7 +137,7 @@ var updateCpuLoad = function(data){
   if(data.success) {
     var cpuload = data.cpu_load;
     timestamp = Date.now()
-    barChartDemo.addData(cpuload, formatted_time(timestamp));
+    barCpuChartDemo.addData(cpuload, formatted_time(timestamp));
   }else {
     log('请求失败');
   }

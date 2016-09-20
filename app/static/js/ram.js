@@ -140,7 +140,7 @@ var updateRamLoad = function(data){
     var ramload = data.ram_load;
     log('data', data, typeof Number(data));
     timestamp = Date.now()
-    barChartDemo.addData(ramload, formatted_time(timestamp));
+    barRamChartDemo.addData(ramload, formatted_time(timestamp));
   }else {
     log('请求失败');
   }
