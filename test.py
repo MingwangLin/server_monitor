@@ -28,6 +28,7 @@ def ram_info_output():
 
 def save_ram_info(output):
     for o in output:
+        log(o)
         if o[0] not in ('p', 'r'):  # 通过字符串首字母滤掉不包含RAM信息的行
             o = o.split()
             if len(o) > 0:
