@@ -16,7 +16,7 @@ def homepage_view():
 
 
 @api.route('/dashboard/cpu/data', methods=['GET'])
-def charts_data():
+def cpu_charts_data():
     args = request.args
     limit = args.get('limit', '')
     log('limit', limit)
@@ -44,8 +44,9 @@ def charts_data():
     }
     return jsonify(data)
 
+
 @api.route('/dashboard/ram/data', methods=['GET'])
-def charts_data():
+def ram_charts_data():
     args = request.args
     limit = args.get('limit', '')
     log('limit', limit)
