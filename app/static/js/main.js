@@ -8,11 +8,10 @@ var __main = function () {
             useUTC: false
         }
     });
+    RamChartSetup();
+    CpuChartSetup();
     $('#id-button-cpu-live').click();
     $('#id-button-ram-live').click();
-    RamChartSetup();
     updateRamChart();
-    CpuChartSetup();
     updateCpuChart();
-
-}
+};
