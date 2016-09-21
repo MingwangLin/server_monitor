@@ -29,18 +29,19 @@ def ram_info_output():
 def save_ram_info(output):
     for o in output:
         o = o.split()
-        log(o)
-        ram_load_index = 6
-        ram_load = o[ram_load_index]
-        if ram_load not in ('%memused', '(1 CPU)'):  # 滤掉不包含RAM信息的行
-            timestamp = int(time.time() * 1000)
-            log('ram_load', ram_load)
-            db.ram.insert_one(
-                {
-                    "ram_load": ram_load,
-                    "timestamp": timestamp,
-                }
-            )
+        if len(o) > 0:
+            log(o)
+            ram_load_index = 6
+            ram_load = o[ram_load_index]
+            if ram_load not in ('%memused', 'CPU)'):  # 滤掉不包含RAM信息的行
+                timestamp = int(time.time() * 1000)
+                log('ram_load', ram_load)
+                db.ram.insert_one(
+                    {
+                        "ram_load": ram_load,
+                        "timestamp": timestamp,
+                    }
+                )
 
 
 def save_cpu_info(output):
