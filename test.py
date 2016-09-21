@@ -31,9 +31,9 @@ def save_ram_info(output):
         o = o.split()
         if len(o) > 0:
             log(o)
-            ram_load_index = 6
+            ram_load_index = 4
             ram_load = o[ram_load_index]
-            if ram_load not in ('%memused', 'CPU)'):  # 滤掉不包含RAM信息的行
+            if ram_load not in ('%memused', '_x86_64_'):  # 滤掉不包含RAM信息的行
                 timestamp = int(time.time() * 1000)
                 log('ram_load', ram_load)
                 db.ram.insert_one(
