@@ -61,7 +61,7 @@
                     <div id="id-div-cpu-oneday"></div>
                 </div>
                 <div class="chart-notes">
-                    This is a sample text region to describe this chart.
+                    cpu load
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
                     <div id="id-div-ram-oneday"></div>
                 </div>
                 <div class="chart-notes">
-                    Notes go down here
+                    memeory load
                 </div>
             </div>
         </div>
@@ -94,13 +94,17 @@
         <div class="col-sm-12">
             <div class="chart-wrapper">
                 <div class="chart-title">
-                    Impressions by advertiser
+                    <button type="button" id="id-button-disk-live" class="btn btn-default">实时</button>
+                    <button type="button" id="id-button-disk-onehour" class="btn btn-default">过去1小时</button>
+                    <button type="button" id="id-button-disk-oneday" class="btn btn-default">过去1天</button>
                 </div>
                 <div class="chart-stage">
-                    <canvas id="id-ram-canvas"></canvas>
+                    <canvas id="id-canvas-disk-live"></canvas>
+                    <div id="id-div-disk-onehour"></div>
+                    <div id="id-div-disk-oneday"></div>
                 </div>
                 <div class="chart-notes">
-                    Notes go down here
+                   DISK I/O
                 </div>
             </div>
         </div>
@@ -115,6 +119,7 @@
 
 <script src="static/js/ram.js"></script>
 <script src="static/js/cpu.js"></script>
+<script src="static/js/disk.js"></script>
 <script src="static/js/main.js"></script>
 </body>
 </html>

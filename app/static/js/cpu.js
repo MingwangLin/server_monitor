@@ -62,6 +62,10 @@ var cpuLoadLive = function (data, $target) {
                 fillColor: "#a9cef2",
                 strokeColor: "#7cb5ec",
                 data: cpuload,
+            }, {
+                fillColor: "#959598",
+                strokeColor: "#46464b",
+                data: cpuload,
             }]
         };
         log('t', $target)

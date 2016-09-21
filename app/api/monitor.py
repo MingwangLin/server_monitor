@@ -59,7 +59,7 @@ def ram_charts_data():
     for document in cursor:
         if i < limit:
             ram_load_data = document.get('ram_load')  # RAM每秒负载率
-            timestamp = document.get('timestamp')  # CPU每秒负载率对应的时间点
+            timestamp = document.get('timestamp')  # RAM每秒负载率对应的时间点
             ram_load.insert(0, ram_load_data)
             ram_load_time.insert(0, timestamp)
             ram_load_couples.insert(0, [timestamp, ram_load_data])
@@ -70,6 +70,36 @@ def ram_charts_data():
         'ram_load': ram_load,
         'ram_load_time': ram_load_time,
         'ram_load_couples': ram_load_couples,
+        'success': True,
+    }
+    return jsonify(data)
+
+
+@api.route('/dashboard/disk/data', methods=['GET'])
+def disk_charts_data():
+    args = request.args
+    limit = args.get('limit', '')
+    log('limit', limit)
+    limit = int(limit)
+    cursor = db.disk.find().sort("timestamp", pymongo.DESCENDING)
+    disk_load = []  # 列表中的元素为DISK每秒I/O
+    disk_load_time = []  # 列表中的元素为DISK每秒I/O对应的时间点
+    disk_load_couples = []  # 列表中的元素为子列表，每个子列表有2个元素：DISK每秒I/O以及其对应的时间点
+    i = 0
+    for document in cursor:
+        if i < limit:
+            disk_load_data = document.get('disk_load')  # DISK每秒I/O
+            timestamp = document.get('timestamp')  # 每秒I/O对应的时间点
+            disk_load.insert(0, disk_load_data)
+            disk_load_time.insert(0, timestamp)
+            disk_load_couples.insert(0, [timestamp, disk_load_data])
+            i += 1
+        else:
+            break
+    data = {
+        'disk_load': disk_load,
+        'disk_load_time': disk_load_time,
+        'disk_load_couples': disk_load_couples,
         'success': True,
     }
     return jsonify(data)
