@@ -82,8 +82,6 @@ var cpuLoadLive = function (data, $target) {
 var cpuLoadPeriod = function (data, $target) {
     if (data.success) {
         var cpuload = data.cpu_load_couples;
-        var timestamp = data.cpu_load_time_start;
-        log('timestamp', timestamp);
         $target.highcharts({
 
             chart: {
@@ -138,7 +136,8 @@ var cpuLoadPeriod = function (data, $target) {
 var updateCpuLoad = function (data) {
     if (data.success) {
         var cpuload = data.cpu_load;
-        timestamp = Date.now()
+        // timestamp = Date.now()
+        timestamp = data.cpu_load_time;
         barCpuChartDemo.addData(cpuload, formatted_time(timestamp));
     } else {
         log('请求失败');

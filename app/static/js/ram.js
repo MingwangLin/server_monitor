@@ -83,8 +83,6 @@ var ramLoadLive = function (data, $target) {
 var ramLoadPeriod = function (data, $target) {
     if (data.success) {
         var ramload = data.ram_load_couples;
-        var timestamp = data.ram_load_time_start;
-        log('timestamp', timestamp);
         $target.highcharts({
 
             chart: {
@@ -138,7 +136,7 @@ var ramLoadPeriod = function (data, $target) {
 var updateRamLoad = function (data) {
     if (data.success) {
         log('success', data);
-        var ramload = data.ram_load;
+        var ramload = data.ram_load_time;
         log('data', data, typeof Number(data));
         timestamp = Date.now()
         barRamChartDemo.addData(ramload, formatted_time(timestamp));
