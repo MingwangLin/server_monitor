@@ -89,9 +89,16 @@ var cpuLoadPeriod = function (data, $target) {
                 },
                 zoomType: 'x'
             },
+
             title: {
-                text: null
+                text: 'cpu load rate over time'
             },
+
+            subtitle: {
+                text: document.ontouchstart === undefined ?
+                        '点击并拖动鼠标放大局部' : 'Pinch the chart to zoom in'
+            },
+
             xAxis: {
                 type: 'datetime',
                 dateTimeLabelFormats: {
