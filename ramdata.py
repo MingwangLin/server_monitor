@@ -29,7 +29,6 @@ def save_ram_info(output):
             if ram_load not in ('%memused', '_x86_64_'):  # 滤掉不包含RAM信息的行
                 timestamp = int(time.time() * 1000)
                 ram_load = float(ram_load)
-                log('ram_load', ram_load)
                 db.ram.insert_one(
                     {
                         "ram_load": ram_load,
@@ -42,7 +41,6 @@ def main():
     # db.cpu.delete_many({})
     # db.ram.delete_many({})
     ram_info = ram_info_output()
-    log(ram_info)
     save_ram_info(ram_info)
 
 

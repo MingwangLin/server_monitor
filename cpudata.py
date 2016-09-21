@@ -37,7 +37,6 @@ def save_cpu_info(output):
                 timestamp = int(time.time() * 1000)
                 cpu_load = total - float(cpu_idle)
                 cpu_load = round(cpu_load, 2)
-                log('cpu_load', cpu_load)
                 db.cpu.insert_one(
                     {
                         "cpu_load": cpu_load,
@@ -56,7 +55,6 @@ def main():
     # db.cpu.delete_many({})
     # db.ram.delete_many({})
     cpu_info = cpu_info_output()
-    log(cpu_info)
     save_cpu_info(cpu_info)
     # find_all_docments()
 
