@@ -19,32 +19,6 @@ def cpu_info_output():
     return output
 
 
-def ram_info_output():
-    cmd = ['sar -r 5']
-    pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    output = (line.decode('utf-8') for line in pipe.stdout)
-    return output
-
-
-def save_ram_info(output):
-    for o in output:
-        o = o.split()
-        if len(o) > 0:
-            log(o)
-            ram_load_index = 4
-            ram_load = o[ram_load_index]
-            if ram_load not in ('%memused', '_x86_64_'):  # 滤掉不包含RAM信息的行
-                timestamp = int(time.time() * 1000)
-                ram_load = float(ram_load)
-                log('ram_load', ram_load)
-                db.ram.insert_one(
-                    {
-                        "ram_load": ram_load,
-                        "timestamp": timestamp,
-                    }
-                )
-
-
 def save_cpu_info(output):
     for o in output:
         # o = o.split()
@@ -81,13 +55,9 @@ def find_all_docments():
 def main():
     # db.cpu.delete_many({})
     # db.ram.delete_many({})
-    ram_info = ram_info_output()
     cpu_info = cpu_info_output()
     log(cpu_info)
-    log(ram_info)
-    save_ram_info(ram_info)
     save_cpu_info(cpu_info)
-
     # find_all_docments()
 
 
