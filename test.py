@@ -13,16 +13,16 @@ def log(*args):
 
 
 def cpu_info_output():
-    cmd = ['iostat 5']
-    cpu_pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    output = (line.decode('utf-8') for line in cpu_pipe.stdout)
+    cmd = ['iostat 5 5']
+    pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    output = (line.decode('utf-8') for line in pipe.stdout)
     return output
 
 
 def ram_info_output():
-    cmd = ['vmstat 5']
-    ram_pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    output = (line.decode('utf-8') for line in ram_pipe.stdout)
+    cmd = ['vmstat 5 5']
+    pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    output = (line.decode('utf-8') for line in pipe.stdout)
     return output
 
 

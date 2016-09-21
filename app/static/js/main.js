@@ -1,8 +1,8 @@
-$(document).ready(function(){
-        __main();
+$(document).ready(function () {
+    __main();
 });
 
-var __main = function() {
+var __main = function () {
     Highcharts.setOptions({
         global: {
             useUTC: false
@@ -14,4 +14,4 @@ var __main = function() {
     updateRamChart();
     $('#id-button-cpu-live').click();
     $('#id-button-ram-live').click();
-  }
+}
