@@ -51,10 +51,8 @@ var ramLoadLive = function (data, $target) {
     if (data.success) {
         var ramload = data.ram_load;
         var label = data.ram_load_time;
-        // log('tim', label);
         for (var i = 0; i < label.length; i++) {
             label[i] = formatted_time(label[i])
-            // log('label', label[i])
         }
         ;
         var barChartData = {
@@ -83,10 +81,12 @@ var ramLoadLive = function (data, $target) {
 var ramLoadPeriod = function (data, $target) {
     if (data.success) {
         var ramload = data.ram_load_couples;
-        log('ramLoadPeriodData', ramload)
         $target.highcharts({
             chart: {
                 zoomType: 'x'
+            },
+            title: {
+                text: null
             },
 
             xAxis: {
@@ -132,12 +132,10 @@ var ramLoadPeriod = function (data, $target) {
 
 var updateRamLoad = function (data) {
     if (data.success) {
-        log('ramData', data);
         var ramload = data.ram_load;
         var ramLoadTime = data.ram_load_time;
         // ramLoadTime 有且只有1个元素
         var timestamp = ramLoadTime[0];
-        log('data', data, typeof Number(data));
         // timestamp = Date.now()
         barRamChartDemo.addData(ramload, formatted_time(timestamp));
     } else {
