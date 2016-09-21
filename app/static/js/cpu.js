@@ -83,15 +83,15 @@ var cpuLoadPeriod = function (data, $target) {
     if (data.success) {
         var cpuload = data.cpu_load_couples;
         $target.highcharts({
-
             chart: {
                 zoomType: 'x'
             },
+
             title: {
                 text: 'CPU load chart'
             },
-            xAxis: {
 
+            xAxis: {
                 type: 'datetime',
                 dateTimeLabelFormats: {
                     second: '%H:%M:%S',
@@ -117,7 +117,7 @@ var cpuLoadPeriod = function (data, $target) {
                 series: {
                     states: {
                         hover: {
-                            enabled: false
+                            enabled: true
                         }
                     }
                 }

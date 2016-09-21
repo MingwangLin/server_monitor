@@ -83,16 +83,17 @@ var ramLoadLive = function (data, $target) {
 var ramLoadPeriod = function (data, $target) {
     if (data.success) {
         var ramload = data.ram_load_couples;
+        log('ramLoadPeriodData', ramload)
         $target.highcharts({
-
             chart: {
                 zoomType: 'x'
             },
-            title: {
-                text: 'RAM load Chart'
-            },
-            xAxis: {
 
+            title: {
+                text: 'RAM load chart'
+            },
+
+            xAxis: {
                 type: 'datetime',
                 dateTimeLabelFormats: {
                     second: '%H:%M:%S',
@@ -108,7 +109,7 @@ var ramLoadPeriod = function (data, $target) {
             yAxis: {
                 title: {
                     text: 'RAM load rate (%)'
-                }
+                },
 
             },
             legend: {
@@ -118,7 +119,7 @@ var ramLoadPeriod = function (data, $target) {
                 series: {
                     states: {
                         hover: {
-                            enabled: false
+                            enabled: true
                         }
                     }
                 }
