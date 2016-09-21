@@ -130,7 +130,6 @@ var cpuLoadPeriod = function (data, $target) {
     } else {
         log('请求失败');
     }
-    ;
 };
 
 var updateCpuLoad = function (data) {
