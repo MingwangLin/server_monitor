@@ -96,11 +96,14 @@ var cpuLoadPeriod = function (data, $target) {
 
             subtitle: {
                 text: document.ontouchstart === undefined ?
-                        '点击并拖动鼠标放大局部' : 'Pinch the chart to zoom in'
+                    '点击并拖动鼠标放大局部' : 'Pinch the chart to zoom in'
             },
 
             xAxis: {
                 type: 'datetime',
+                title: {
+                    text: 'Date'
+                },
                 dateTimeLabelFormats: {
                     second: '%H:%M:%S',
                     minute: '%H:%M',
