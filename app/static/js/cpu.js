@@ -43,7 +43,7 @@ var updateCpuChart = function () {
     setInterval(function () {
         barCpuChartDemo.removeData();
         get(CpuLoadUrl, updateCpuLoad)
-    }, 5000);
+    }, 3000);
 };
 
 var cpuLoadLive = function (data, $target) {

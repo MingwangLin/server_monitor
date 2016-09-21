@@ -13,7 +13,7 @@ def log(*args):
 
 
 def ram_info_output():
-    cmd = ['sar -r 5']
+    cmd = ['sar -r 3']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     output = (line.decode('utf-8') for line in pipe.stdout)
     return output

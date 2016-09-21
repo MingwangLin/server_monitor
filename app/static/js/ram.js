@@ -44,7 +44,7 @@ var updateRamChart = function () {
     setInterval(function () {
         barRamChartDemo.removeData();
         get(RamLoadUrl, updateRamLoad)
-    }, 5000);
+    }, 3000);
 };
 
 var ramLoadLive = function (data, $target) {
