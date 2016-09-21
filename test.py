@@ -20,7 +20,7 @@ def cpu_info_output():
 
 
 def ram_info_output():
-    cmd = ['sar -S 5']
+    cmd = ['sar -r 5']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     output = (line.decode('utf-8') for line in pipe.stdout)
     return output
