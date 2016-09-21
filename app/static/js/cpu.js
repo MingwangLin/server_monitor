@@ -43,7 +43,7 @@ var updateCpuChart = function () {
     setInterval(function () {
         barCpuChartDemo.removeData();
         get(CpuLoadUrl, updateCpuLoad)
-    }, 1000);
+    }, 5000);
 };
 
 var cpuLoadLive = function (data, $target) {
@@ -136,8 +136,8 @@ var cpuLoadPeriod = function (data, $target) {
 var updateCpuLoad = function (data) {
     if (data.success) {
         var cpuload = data.cpu_load;
+        var timestamp = data.cpu_load_time;
         // timestamp = Date.now()
-        timestamp = data.cpu_load_time;
         barCpuChartDemo.addData(cpuload, formatted_time(timestamp));
     } else {
         log('请求失败');

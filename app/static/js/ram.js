@@ -44,7 +44,7 @@ var updateRamChart = function () {
     setInterval(function () {
         barRamChartDemo.removeData();
         get(RamLoadUrl, updateRamLoad)
-    }, 1000);
+    }, 5000);
 };
 
 var ramLoadLive = function (data, $target) {
@@ -135,10 +135,11 @@ var ramLoadPeriod = function (data, $target) {
 
 var updateRamLoad = function (data) {
     if (data.success) {
-        log('success', data);
+        log('ramData', data);
         var ramload = data.ram_load_time;
+        var timestamp = data.ram_load_time;
         log('data', data, typeof Number(data));
-        timestamp = Date.now()
+        // timestamp = Date.now()
         barRamChartDemo.addData(ramload, formatted_time(timestamp));
     } else {
         log('请求失败');
