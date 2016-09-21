@@ -137,7 +137,9 @@ var updateRamLoad = function (data) {
     if (data.success) {
         log('ramData', data);
         var ramload = data.ram_load;
-        var timestamp = data.ram_load_time;
+        var ramLoadTime = data.ram_load_time;
+        // ramLoadTime 有且只有1个元素
+        var timestamp = ramLoadTime[0];
         log('data', data, typeof Number(data));
         // timestamp = Date.now()
         barRamChartDemo.addData(ramload, formatted_time(timestamp));

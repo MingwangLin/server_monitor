@@ -136,7 +136,9 @@ var cpuLoadPeriod = function (data, $target) {
 var updateCpuLoad = function (data) {
     if (data.success) {
         var cpuload = data.cpu_load;
-        var timestamp = data.cpu_load_time;
+        var cpuLoadTime = data.cpu_load_time;
+        // ramLoadTime 有且只有1个元素
+        var timestamp = cpuLoadTime[0];
         // timestamp = Date.now()
         barCpuChartDemo.addData(cpuload, formatted_time(timestamp));
     } else {
