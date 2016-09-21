@@ -35,7 +35,7 @@ def save_ram_info(output):
             ram_load = o[ram_load_index]
             if ram_load not in ('%memused', '_x86_64_'):  # 滤掉不包含RAM信息的行
                 timestamp = int(time.time() * 1000)
-                ram_load = int(ram_load)
+                ram_load = float(ram_load)
                 log('ram_load', ram_load)
                 db.ram.insert_one(
                     {
