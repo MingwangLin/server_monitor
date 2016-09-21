@@ -13,14 +13,14 @@ def log(*args):
 
 
 def cpu_info_output():
-    cmd = ['iostat 5 5']
+    cmd = ['iostat 5 ']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     output = (line.decode('utf-8') for line in pipe.stdout)
     return output
 
 
 def ram_info_output():
-    cmd = ['vmstat 5 5']
+    cmd = ['vmstat 5 ']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     output = (line.decode('utf-8') for line in pipe.stdout)
     return output
