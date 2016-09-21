@@ -83,6 +83,9 @@ var ramLoadPeriod = function (data, $target) {
         var ramload = data.ram_load_couples;
         $target.highcharts({
             chart: {
+                chart: {
+                    type: 'spline'
+                },
                 zoomType: 'x'
             },
             title: {
