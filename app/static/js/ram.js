@@ -136,7 +136,7 @@ var ramLoadPeriod = function (data, $target) {
 var updateRamLoad = function (data) {
     if (data.success) {
         log('ramData', data);
-        var ramload = data.ram_load_time;
+        var ramload = data.ram_load;
         var timestamp = data.ram_load_time;
         log('data', data, typeof Number(data));
         // timestamp = Date.now()
