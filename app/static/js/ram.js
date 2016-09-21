@@ -89,10 +89,6 @@ var ramLoadPeriod = function (data, $target) {
                 zoomType: 'x'
             },
 
-            title: {
-                text: 'RAM load chart'
-            },
-
             xAxis: {
                 type: 'datetime',
                 dateTimeLabelFormats: {

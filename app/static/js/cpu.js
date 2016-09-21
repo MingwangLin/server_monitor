@@ -87,10 +87,6 @@ var cpuLoadPeriod = function (data, $target) {
                 zoomType: 'x'
             },
 
-            title: {
-                text: 'CPU load chart'
-            },
-
             xAxis: {
                 type: 'datetime',
                 dateTimeLabelFormats: {
