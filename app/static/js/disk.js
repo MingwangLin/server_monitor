@@ -49,8 +49,9 @@ var updateDiskChart = function () {
 
 var diskLoadLive = function (data, $target) {
     if (data.success) {
-        var diskload = data.disk_load;
-        var label = data.disk_load_time;
+        var diskread = data.disk_read;
+        var diskwrtn = data.disk_wrtn;
+        var label = data.disk_io_time;
         for (var i = 0; i < label.length; i++) {
             label[i] = formatted_time(label[i])
         }
@@ -58,9 +59,15 @@ var diskLoadLive = function (data, $target) {
         var barChartData = {
             labels: label,
             datasets: [{
+                label: "wirte(KB/s)",
                 fillColor: "#a9cef2",
                 strokeColor: "#7cb5ec",
-                data: diskload,
+                data: diskread,
+            }, {
+                label: "read(KB/s)",
+                fillColor: "#959598",
+                strokeColor: "#46464b",
+                data: diskwrtn,
             }]
         };
         log('t', $target)
@@ -80,13 +87,20 @@ var diskLoadLive = function (data, $target) {
 
 var diskLoadPeriod = function (data, $target) {
     if (data.success) {
-        var diskload = data.disk_load_couples;
+        var diskread = data.disk_read_couples;
+        var diskwrtn = data.disk_wrtn_couples;
         $target.highcharts({
             chart: {
                 type: 'spline'
             },
+
             title: {
-                text: null
+                text: 'disk I/O over time'
+            },
+
+            subtitle: {
+                text: document.ontouchstart === undefined ?
+                    '点击并拖动鼠标放大局部' : 'Pinch the chart to zoom in'
             },
 
             xAxis: {
@@ -114,44 +128,11 @@ var diskLoadPeriod = function (data, $target) {
             },
             series: [{
                 name: 'read',
-                data: [
-                    [Date.UTC(1970, 9, 21), 0],
-                    [Date.UTC(1970, 10, 4), 0.28],
-                    [Date.UTC(1970, 10, 9), 0.25],
-                    [Date.UTC(1970, 10, 27), 0.2],
-                    [Date.UTC(1970, 11, 2), 0.28],
-                    [Date.UTC(1970, 11, 26), 0.28],
-                    [Date.UTC(1970, 11, 29), 0.47],
-                    [Date.UTC(1971, 0, 11), 0.79],
-                    [Date.UTC(1971, 0, 26), 0.72],
-                    [Date.UTC(1971, 1, 3), 1.02],
-                    [Date.UTC(1971, 1, 11), 1.12],
-                    [Date.UTC(1971, 1, 25), 1.2],
-                    [Date.UTC(1971, 2, 11), 1.18],
-                    [Date.UTC(1971, 3, 11), 1.19],
-                    [Date.UTC(1971, 4, 1), 1.85],
-                    [Date.UTC(1971, 4, 5), 2.22],
-                    [Date.UTC(1971, 4, 19), 1.15],
-                    [Date.UTC(1971, 5, 3), 0]
-                ]
+                data: diskread
             }, {
                 name: 'write',
-                data: [
-                    [Date.UTC(1970, 9, 29), 0],
-                    [Date.UTC(1970, 10, 9), 0.4],
-                    [Date.UTC(1970, 11, 1), 0.25],
-                    [Date.UTC(1971, 0, 1), 1.66],
-                    [Date.UTC(1971, 0, 10), 1.8],
-                    [Date.UTC(1971, 1, 19), 1.76],
-                    [Date.UTC(1971, 2, 25), 2.62],
-                    [Date.UTC(1971, 3, 19), 2.41],
-                    [Date.UTC(1971, 3, 30), 2.05],
-                    [Date.UTC(1971, 4, 14), 1.7],
-                    [Date.UTC(1971, 4, 24), 1.1],
-                    [Date.UTC(1971, 5, 10), 0]
-                ]
+                data: diskwrtn
             }
-
             ]
         });
     } else {
@@ -161,12 +142,14 @@ var diskLoadPeriod = function (data, $target) {
 
 var updateDiskLoad = function (data) {
     if (data.success) {
-        var diskload = data.disk_load;
-        var diskLoadTime = data.disk_load_time;
-        // diskLoadTime 有且只有1个元素
-        var timestamp = diskLoadTime[0];
-        // timestamp = Date.now()
-        barDiskChartDemo.addData(diskload, formatted_time(timestamp));
+        var diskread = data.disk_read;
+        var diskwrtn = data.disk_wrtn;
+        var diskLoadTime = data.disk_io_time;
+        // diskread, diskwrtn, diskLoadTime 有且只有1个元素
+        var timestamp = disk_io_time[0];
+        var diskread = disk_read[0];
+        var diskwrtn = disk_wrtn[0];
+        barDiskChartDemo.addData([diskread, diskwrtn], formatted_time(timestamp));
     } else {
         log('请求失败');
     }

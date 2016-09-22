@@ -59,14 +59,8 @@ var cpuLoadLive = function (data, $target) {
         var barChartData = {
             labels: label,
             datasets: [{
-                label: "Label 1",
                 fillColor: "#a9cef2",
                 strokeColor: "#7cb5ec",
-                data: cpuload,
-            }, {
-                label: "Label 2",
-                fillColor: "#959598",
-                strokeColor: "#46464b",
                 data: cpuload,
             }]
         };
@@ -80,8 +74,6 @@ var cpuLoadLive = function (data, $target) {
             scaleStepWidth: 10,
             scaleStartValue: 0
         });
-        $target[0].innerHTML = barCpuChartDemo.generateLegend();
-
     } else {
         log('请求失败');
     }

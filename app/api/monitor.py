@@ -82,24 +82,31 @@ def disk_charts_data():
     log('limit', limit)
     limit = int(limit)
     cursor = db.disk.find().sort("timestamp", pymongo.DESCENDING)
-    disk_load = []  # 列表中的元素为DISK每秒I/O
-    disk_load_time = []  # 列表中的元素为DISK每秒I/O对应的时间点
-    disk_load_couples = []  # 列表中的元素为子列表，每个子列表有2个元素：DISK每秒I/O以及其对应的时间点
+    disk_read = []  # 列表中的元素为DISK每秒读数据大小
+    disk_wrtn = []  # 列表中的元素为DISK每秒写数据大小
+    disk_io_time = []  # 列表中的元素为DISK每秒I/O对应的时间点
+    disk_read_couples = []  # 列表中的元素为子列表，每个子列表有2个元素：DISK每秒读数据大小以及其对应的时间点
+    disk_wrtn_couples = []  # 列表中的元素为子列表，每个子列表有2个元素：DISK每秒写数据大小以及其对应的时间点
     i = 0
     for document in cursor:
         if i < limit:
-            disk_load_data = document.get('disk_load')  # DISK每秒I/O
+            disk_read_data = document.get('disk_read')  # DISK每秒I/O
+            disk_wrtn_data = document.get('disk_wrtn')  # DISK每秒I/O
             timestamp = document.get('timestamp')  # 每秒I/O对应的时间点
-            disk_load.insert(0, disk_load_data)
-            disk_load_time.insert(0, timestamp)
-            disk_load_couples.insert(0, [timestamp, disk_load_data])
+            disk_read.insert(0, disk_read_data)
+            disk_read.insert(0, disk_wrtn_data)
+            disk_io_time.insert(0, timestamp)
+            disk_read_couples.insert(0, [timestamp, disk_read_data])
+            disk_wrtn_couples.insert(0, [timestamp, disk_wrtn_data])
             i += 1
         else:
             break
     data = {
-        'disk_load': disk_load,
-        'disk_load_time': disk_load_time,
-        'disk_load_couples': disk_load_couples,
+        'disk_read': disk_read,
+        'disk_wrtn': disk_wrtn,
+        'disk_io_time': disk_io_time,
+        'disk_read_couples': disk_read_couples,
+        'disk_wrtn_couples': disk_wrtn_couples,
         'success': True,
     }
     return jsonify(data)
