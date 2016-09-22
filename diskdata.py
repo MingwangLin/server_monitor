@@ -21,14 +21,7 @@ def disk_info_output():
 
 def save_disk_info(output):
     for o in output:
-        # o = o.split()
-        # # log(o)
-        # disk_idle_index = -1
-        # disk_idle = o[disk_idle_index]
-        if len(o) > 0 and o[0] not in ('L', 'D', 'v'):  # 通过字符串首字母滤掉不包含CPU信息的行
-            # disk_idle_index = -4
-            # disk_idle = o[disk_idle_index]
-            # if disk_idle != 'disk3' and disk_idle != 'id':
+        if len(o) > 0 and o[0] not in ('L', 'D'):  # 通过字符串首字母滤掉不包含CPU信息的行
             o = o.split()
             log(o)
             if len(o) > 0:

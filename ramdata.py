@@ -37,7 +37,6 @@ def save_ram_info(output):
 
 
 def main():
-    # db.cpu.delete_many({})
     # db.ram.delete_many({})
     ram_info = ram_info_output()
     save_ram_info(ram_info)
