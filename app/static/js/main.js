@@ -10,8 +10,11 @@ var __main = function () {
     });
     RamChartSetup();
     CpuChartSetup();
+    DiskChartSetup();
     $('#id-button-cpu-live').click();
     $('#id-button-ram-live').click();
+    $('#id-button-disk-live').click();
     updateRamChart();
     updateCpuChart();
+    updateDiskChart();
 };
