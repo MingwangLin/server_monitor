@@ -149,7 +149,7 @@ var updateCpuLoad = function (data) {
         // ramLoadTime 有且只有1个元素
         var timestamp = cpuLoadTime[0];
         // timestamp = Date.now()
-        CpuChartLive.addData(cpuload, -1, formatted_time(timestamp));
+        CpuChartLive.addData(cpuload, 9, formatted_time(timestamp));
     } else {
         log('请求失败');
     }
