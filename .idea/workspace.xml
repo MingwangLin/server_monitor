@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48a8330e-a994-4715-89a1-450427e98997" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/diskdata.py" afterPath="$PROJECT_DIR$/diskdata.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/js/disk.js" afterPath="$PROJECT_DIR$/app/static/js/disk.js" />
     </list>
     <ignored path="server_monitor.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="diskdata.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="diskdata.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/diskdata.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
@@ -82,8 +82,8 @@
       <file leaf-file-name="disk.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/static/js/disk.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="75" column="29" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
+            <state relative-caret-position="187">
+              <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -121,10 +121,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/templates/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
+            <state relative-caret-position="-1056">
               <caret line="38" column="57" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
               <folding />
             </state>
@@ -160,8 +160,8 @@
         <option value="$PROJECT_DIR$/ramdata.py" />
         <option value="$PROJECT_DIR$/cpudata.py" />
         <option value="$PROJECT_DIR$/app/static/js/ram.js" />
-        <option value="$PROJECT_DIR$/app/static/js/disk.js" />
         <option value="$PROJECT_DIR$/diskdata.py" />
+        <option value="$PROJECT_DIR$/app/static/js/disk.js" />
       </list>
     </option>
   </component>
@@ -877,14 +877,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="38" column="57" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/js/cpu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1298">
@@ -937,14 +929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/js/disk.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="75" column="29" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ramdata.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
@@ -962,6 +946,22 @@
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/js/disk.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1056">
+          <caret line="38" column="57" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
+          <folding />
         </state>
       </provider>
     </entry>

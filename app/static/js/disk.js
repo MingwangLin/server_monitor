@@ -49,8 +49,10 @@ var updateDiskChart = function () {
 
 var diskLoadLive = function (data, $target) {
     if (data.success) {
-        var diskread = data.disk_read;
-        var diskwrtn = data.disk_wrtn;
+        var diskRead = data.disk_read;
+        log(diskRead);
+        var diskWrtn = data.disk_wrtn;
+        log(diskWrtn);
         var label = data.disk_io_time;
         for (var i = 0; i < label.length; i++) {
             label[i] = formatted_time(label[i])
@@ -62,21 +64,21 @@ var diskLoadLive = function (data, $target) {
                 label: "wirte(KB/s)",
                 fillColor: "#a9cef2",
                 strokeColor: "#7cb5ec",
-                data: diskread,
+                data: diskRead
             }, {
                 label: "read(KB/s)",
                 fillColor: "#959598",
                 strokeColor: "#46464b",
-                data: diskwrtn,
+                data: diskWrtn
             }]
         };
         log('t', $target)
         var ctx = $target[0].getContext("2d");
         barDiskChartDemo = new Chart(ctx).Bar(barChartData, {
-            responsive: false,
+            responsive: true,
             barValueSpacing: 2,
             scaleOverride: true,
-            scaleSteps: 10,
+            scaleSteps: 30,
             scaleStepWidth: 10,
             scaleStartValue: 0
         });
