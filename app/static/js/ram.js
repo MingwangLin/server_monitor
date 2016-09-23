@@ -59,7 +59,7 @@ var ramLoadLive = function (data, $target) {
             labels: label,
             datasets: [{
                 label: 'memory load rate (%)',
-                fill: false,
+                datasetFill: false,
                 strokeColor: "#7cb5ec",
                 data: ramload,
             }]
