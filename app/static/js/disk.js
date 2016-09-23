@@ -50,9 +50,9 @@ var updateDiskChart = function () {
 var diskLoadLive = function (data, $target) {
     if (data.success) {
         var diskread = data.disk_read;
-        log('r', diskRead);
+        log('r', diskread);
         var diskwrtn = data.disk_wrtn;
-        log('w', diskWrtn);
+        log('w', diskwrtn);
         var label = data.disk_io_time;
         for (var i = 0; i < label.length; i++) {
             label[i] = formatted_time(label[i])
