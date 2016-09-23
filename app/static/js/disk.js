@@ -49,9 +49,9 @@ var updateDiskChart = function () {
 
 var diskLoadLive = function (data, $target) {
     if (data.success) {
-        var diskRead = data.disk_read;
+        var diskread = data.disk_read;
         log('r', diskRead);
-        var diskWrtn = data.disk_wrtn;
+        var diskwrtn = data.disk_wrtn;
         log('w', diskWrtn);
         var label = data.disk_io_time;
         for (var i = 0; i < label.length; i++) {
@@ -61,15 +61,15 @@ var diskLoadLive = function (data, $target) {
         var lineChartData = {
             labels: label,
             datasets: [{
-                label: "write(KB/s)",
-                fillColor: "#fff",
-                strokeColor: "#46464b",
-                data: diskWrtn
-            }, {
                 label: "read(KB/s)",
                 fillColor: "#fff",
                 strokeColor: "#7cb5ec",
-                data: diskRead
+                data: diskread
+            }, {
+                label: "write(KB/s)",
+                fillColor: "#fff",
+                strokeColor: "#46464b",
+                data: diskwrtn
             }]
         };
         log('t', $target);
