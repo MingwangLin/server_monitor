@@ -56,24 +56,25 @@ var cpuLoadLive = function (data, $target) {
             // log('label', label[i])
         }
         ;
-        var lineChartData = {
+        var chartData = {
             labels: label,
             datasets: [{
                 label: 'cpu load rate (%)',
                 fill: false,
                 strokeColor: "#7cb5ec",
+                responsive: true,
+                scaleOverride: true,
+                scaleSteps: 10,
+                scaleStepWidth: 10,
+                scaleStartValue: 0,
                 data: cpuload,
             }]
         };
-        log('t', $target)
-        var ctx = $target[0].getContext("2d");
-        CpuChartLive = new Chart(ctx).Line(lineChartData, {
-            responsive: true,
-            scaleOverride: true,
-            scaleSteps: 10,
-            scaleStepWidth: 10,
-            scaleStartValue: 0
-        });
+        var ctx = $target;
+        CpuChartLive = new Chart(ctx, {
+                type: 'line',
+                data: chartData,
+            });
     } else {
         log('请求失败');
     }

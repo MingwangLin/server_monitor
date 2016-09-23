@@ -57,31 +57,28 @@ var diskLoadLive = function (data, $target) {
         for (var i = 0; i < label.length; i++) {
             label[i] = formatted_time(label[i])
         }
-        ;
-        log('label', label);
-        var lineChartData = {
+        var chartData = {
             labels: label,
             datasets: [{
                 label: "read(KB/s)",
                 fill: false,
                 strokeColor: "#7cb5ec",
+                animationSteps: 60,
+                responsive: true,
                 data: diskread
             }, {
                 label: "write(KB/s)",
                 fill: false,
                 strokeColor: "#46464b",
+                animationSteps: 60,
+                responsive: true,
                 data: diskwrtn
             }]
         };
-        log('t', $target);
-        var ctx = $target[0].getContext("2d");
-        DiskChartLive = new Chart(ctx).Line(lineChartData, {
-            animationSteps: 60,
-            responsive: true,
-            scaleOverride: true,
-            scaleSteps: 6,
-            scaleStepWidth: 50,
-            scaleStartValue: 0
+        var ctx = $target
+        DiskChartLive = new Chart(ctx, {
+            type: 'line',
+            data: chartData
         });
     } else {
         log('请求失败');
