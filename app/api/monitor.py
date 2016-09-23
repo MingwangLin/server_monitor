@@ -94,7 +94,7 @@ def disk_charts_data():
             disk_wrtn_data = document.get('disk_wrtn')  # DISK每秒I/O
             timestamp = document.get('timestamp')  # 每秒I/O对应的时间点
             disk_read.insert(0, disk_read_data)
-            disk_read.insert(0, disk_wrtn_data)
+            disk_wrtn.insert(0, disk_wrtn_data)
             disk_io_time.insert(0, timestamp)
             disk_read_couples.insert(0, [timestamp, disk_read_data])
             disk_wrtn_couples.insert(0, [timestamp, disk_wrtn_data])
