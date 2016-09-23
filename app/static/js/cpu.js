@@ -148,7 +148,7 @@ var updateCpuLoad = function (data) {
         // cpuload,ramLoadTime 为列表，有且只有1个元素
         var cpuload = cpuload[0];
         var timestamp = cpuLoadTime[0];
-        var timestamp = formatted_time(timestamp));
+        var timestamp = formatted_time(timestamp);
         // timestamp = Date.now()
         // 在图表数据列表末尾插入数据， 即index等于9
         CpuChartLive.data.datasets[0].data[9] = cpuload;
