@@ -72,16 +72,15 @@ var diskLoadLive = function (data, $target) {
                 data: diskWrtn
             }]
         };
-        log('t', $target)
+        log('t', $target);
         var ctx = $target[0].getContext("2d");
         DiskChartLive = new Chart(ctx).Line(lineChartData, {
             animationSteps: 60,
-            // responsive: true,
-            // barValueSpacing: 2,
-            // scaleOverride: true,
-            // scaleSteps: 30,
-            // scaleStepWidth: 10,
-            // scaleStartValue: 0
+            responsive: true,
+            scaleOverride: true,
+            scaleSteps: 6,
+            scaleStepWidth: 50,
+            scaleStartValue: 0
         });
     } else {
         log('请求失败');
@@ -151,9 +150,9 @@ var updateDiskLoad = function (data) {
         // diskread, diskwrtn, diskLoadTime 有且只有1个元素
         var timestamp = disktime[0];
         var diskread = diskread[0];
-        log('diskread1', diskread)
+        log('diskread1', diskread);
         var diskwrtn = diskwrtn[0];
-        log('diskwrtn1', diskwrtn)
+        log('diskwrtn1', diskwrtn);
         DiskChartLive.addData([diskread, diskwrtn], formatted_time(timestamp));
     } else {
         log('请求失败');
