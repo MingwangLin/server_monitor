@@ -29,6 +29,8 @@ def save_disk_info(output):
                 disk_wrtn_index = 3
                 disk_read = o[disk_read_index]
                 disk_wrtn = o[disk_wrtn_index]
+                disk_read = float(disk_read)
+                disk_wrtn = float(disk_wrtn)
                 timestamp = int(time.time() * 1000)
                 db.disk.insert_one(
                     {
