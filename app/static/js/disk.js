@@ -61,7 +61,7 @@ var diskLoadLive = function (data, $target) {
         var lineChartData = {
             labels: label,
             datasets: [{
-                label: "wtite(KB/s)",
+                label: "write(KB/s)",
                 fillColor: "#fff",
                 strokeColor: "#46464b",
                 data: diskWrtn
