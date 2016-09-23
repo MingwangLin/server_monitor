@@ -62,12 +62,12 @@ var diskLoadLive = function (data, $target) {
             labels: label,
             datasets: [{
                 label: "wirte(KB/s)",
-                fillColor: "#a9cef2",
+                fillColor: "#fff",
                 strokeColor: "#7cb5ec",
                 data: diskRead
             }, {
                 label: "read(KB/s)",
-                fillColor: "#959598",
+                fillColor: "#fff",
                 strokeColor: "#46464b",
                 data: diskWrtn
             }]
@@ -78,7 +78,7 @@ var diskLoadLive = function (data, $target) {
             animationSteps: 60,
             responsive: true,
             scaleOverride: true,
-            scaleSteps: 6,
+            scaleSteps: 5,
             scaleStepWidth: 50,
             scaleStartValue: 0
         });
