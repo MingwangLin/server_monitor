@@ -52,11 +52,11 @@ def find_all_docments():
 
 
 def main():
-    db.cpu.delete_many({})
-    db.ram.delete_many({})
-    db.disk.delete_many({})
-    # cpu_info = cpu_info_output()
-    # save_cpu_info(cpu_info)
+    # db.cpu.delete_many({})
+    # db.ram.delete_many({})
+    # db.disk.delete_many({})
+    cpu_info = cpu_info_output()
+    save_cpu_info(cpu_info)
     # find_all_docments()
 
 

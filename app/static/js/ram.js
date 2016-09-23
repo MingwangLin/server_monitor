@@ -66,7 +66,7 @@ var ramLoadLive = function (data, $target) {
         log('t', $target)
         var ctx = $target[0].getContext("2d");
         barRamChartDemo = new Chart(ctx).Bar(barChartData, {
-            responsive: true,
+            responsive: false,
             barValueSpacing: 2,
             scaleOverride: true,
             scaleSteps: 10,
