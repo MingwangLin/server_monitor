@@ -42,7 +42,7 @@ var updateDiskChart = function () {
     // 请求实时单个disk负载数据
     var DiskLoadUrl = 'dashboard/disk/data?limit=1';
     setInterval(function () {
-        barDiskChartDemo.removeData();
+        DiskChartLive.removeData();
         get(DiskLoadUrl, updateDiskLoad)
     }, 3000);
 };
@@ -58,7 +58,7 @@ var diskLoadLive = function (data, $target) {
             label[i] = formatted_time(label[i])
         }
         ;
-        var barChartData = {
+        var lineChartData = {
             labels: label,
             datasets: [{
                 label: "wirte(KB/s)",
@@ -74,13 +74,14 @@ var diskLoadLive = function (data, $target) {
         };
         log('t', $target)
         var ctx = $target[0].getContext("2d");
-        barDiskChartDemo = new Chart(ctx).Bar(barChartData, {
-            responsive: true,
-            barValueSpacing: 2,
-            scaleOverride: true,
-            scaleSteps: 30,
-            scaleStepWidth: 10,
-            scaleStartValue: 0
+        DiskChartLive = new Chart(ctx).Line(lineChartData, {
+            animationSteps: 60,
+            // responsive: true,
+            // barValueSpacing: 2,
+            // scaleOverride: true,
+            // scaleSteps: 30,
+            // scaleStepWidth: 10,
+            // scaleStartValue: 0
         });
     } else {
         log('请求失败');
@@ -150,8 +151,10 @@ var updateDiskLoad = function (data) {
         // diskread, diskwrtn, diskLoadTime 有且只有1个元素
         var timestamp = disk_io_time[0];
         var diskread = disk_read[0];
+        log('diskread1', diskread)
         var diskwrtn = disk_wrtn[0];
-        barDiskChartDemo.addData([diskread, diskwrtn], formatted_time(timestamp));
+        log('diskwrtn1', diskwrtn)
+        DiskChartLive.addData([diskread, diskwrtn], formatted_time(timestamp));
     } else {
         log('请求失败');
     }
