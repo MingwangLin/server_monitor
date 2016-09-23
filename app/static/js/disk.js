@@ -81,7 +81,7 @@ var diskLoadLive = function (data, $target) {
             scaleOverride: true,
             // scaleSteps: 5,
             // scaleStepWidth: 50,
-            scaleStartValue: 0
+            // scaleStartValue: 0
         });
     } else {
         log('请求失败');
