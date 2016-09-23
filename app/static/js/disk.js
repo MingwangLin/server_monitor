@@ -58,15 +58,16 @@ var diskLoadLive = function (data, $target) {
             label[i] = formatted_time(label[i])
         }
         ;
+        log('label', label);
         var lineChartData = {
             labels: label,
             datasets: [{
-                // label: "read(KB/s)",
+                label: "read(KB/s)",
                 fillColor: "#fff",
                 strokeColor: "#7cb5ec",
                 data: diskread
             }, {
-                // label: "write(KB/s)",
+                label: "write(KB/s)",
                 fillColor: "#fff",
                 strokeColor: "#46464b",
                 data: diskwrtn
