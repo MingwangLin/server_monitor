@@ -93,8 +93,10 @@ var diskLoadPeriod = function (data, $target) {
         var diskwrtn = data.disk_wrtn_couples;
         $target.highcharts({
             chart: {
-                type: 'spline'
+                type: 'spline',
+                zoomType: 'x'
             },
+
 
             title: {
                 text: 'disk I/O over time'

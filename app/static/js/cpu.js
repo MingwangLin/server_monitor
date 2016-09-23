@@ -84,9 +84,7 @@ var cpuLoadPeriod = function (data, $target) {
         var cpuload = data.cpu_load_couples;
         $target.highcharts({
             chart: {
-                chart: {
-                    type: 'spline'
-                },
+                type: 'spline',
                 zoomType: 'x'
             },
 
