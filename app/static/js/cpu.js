@@ -41,7 +41,7 @@ var updateCpuChart = function () {
     // 请求实时单个cpu负载数据
     var CpuLoadUrl = 'dashboard/cpu/data?limit=1';
     setInterval(function () {
-        CpuChartLive.removeData();
+        CpuChartLive.removeData(0,0);
         get(CpuLoadUrl, updateCpuLoad)
     }, 3000);
 };
@@ -149,7 +149,7 @@ var updateCpuLoad = function (data) {
         // ramLoadTime 有且只有1个元素
         var timestamp = cpuLoadTime[0];
         // timestamp = Date.now()
-        CpuChartLive.addData(cpuload, formatted_time(timestamp));
+        CpuChartLive.addData(cpuload, -1, formatted_time(timestamp));
     } else {
         log('请求失败');
     }
