@@ -1,9 +1,9 @@
 var DiskChartSetup = function () {
     var diskLoadLiveUrl = 'dashboard/disk/data?limit=10';
     get(diskLoadLiveUrl, response = diskLoadLive, $target = $('#id-canvas-disk-live'));
-    var diskLoadOneHourUrl = 'dashboard/disk/data?limit=3600';
+    var diskLoadOneHourUrl = 'dashboard/disk/data?limit=1200';
     get(diskLoadOneHourUrl, response = diskLoadPeriod, $target = $('#id-div-disk-onehour'));
-    var diskLoadOneDayUrl = 'dashboard/disk/data?limit=896400';
+    var diskLoadOneDayUrl = 'dashboard/disk/data?limit=298800';
     get(diskLoadOneDayUrl, response = diskLoadPeriod, $target = $('#id-div-disk-oneday'));
 
     var tabAction = function (diskLive, diskOneHour, diskOneDay) {

@@ -1,9 +1,9 @@
 var CpuChartSetup = function () {
     var cpuLoadLiveUrl = 'dashboard/cpu/data?limit=10';
     get(cpuLoadLiveUrl, response = cpuLoadLive, $target = $('#id-canvas-cpu-live'));
-    var cpuLoadOneHourUrl = 'dashboard/cpu/data?limit=3600';
+    var cpuLoadOneHourUrl = 'dashboard/cpu/data?limit=1200';
     get(cpuLoadOneHourUrl, response = cpuLoadPeriod, $target = $('#id-div-cpu-onehour'));
-    var cpuLoadOneDayUrl = 'dashboard/cpu/data?limit=896400';
+    var cpuLoadOneDayUrl = 'dashboard/cpu/data?limit=298800';
     get(cpuLoadOneDayUrl, response = cpuLoadPeriod, $target = $('#id-div-cpu-oneday'));
 
     var tabAction = function (cpuLive, cpuOneHour, cpuOneDay) {

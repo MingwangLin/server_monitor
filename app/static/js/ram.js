@@ -1,9 +1,9 @@
 var RamChartSetup = function () {
     var ramLoadLiveUrl = 'dashboard/ram/data?limit=10';
     get(ramLoadLiveUrl, response = ramLoadLive, $target = $('#id-canvas-ram-live'));
-    var ramLoadOneHourUrl = 'dashboard/ram/data?limit=3600';
+    var ramLoadOneHourUrl = 'dashboard/ram/data?limit=1200';
     get(ramLoadOneHourUrl, response = ramLoadPeriod, $target = $('#id-div-ram-onehour'));
-    var ramLoadOneDayUrl = 'dashboard/ram/data?limit=896400';
+    var ramLoadOneDayUrl = 'dashboard/ram/data?limit=298800';
     get(ramLoadOneDayUrl, response = ramLoadPeriod, $target = $('#id-div-ram-oneday'));
 
     var tabAction = function (ramLive, ramOneHour, ramOneDay) {
