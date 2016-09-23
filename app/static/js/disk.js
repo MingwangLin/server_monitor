@@ -147,12 +147,12 @@ var updateDiskLoad = function (data) {
     if (data.success) {
         var diskread = data.disk_read;
         var diskwrtn = data.disk_wrtn;
-        var disk_io_time = data.disk_io_time;
+        var disktime = data.disk_io_time;
         // diskread, diskwrtn, diskLoadTime 有且只有1个元素
-        var timestamp = disk_io_time[0];
-        var diskread = disk_read[0];
+        var timestamp = disktime[0];
+        var diskread = diskread[0];
         log('diskread1', diskread)
-        var diskwrtn = disk_wrtn[0];
+        var diskwrtn = diskwrtn[0];
         log('diskwrtn1', diskwrtn)
         DiskChartLive.addData([diskread, diskwrtn], formatted_time(timestamp));
     } else {
