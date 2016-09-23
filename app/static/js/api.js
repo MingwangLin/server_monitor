@@ -1,6 +1,6 @@
 // log
 var log = function () {
-    console.log(arguments);
+    // console.log(arguments);
 };
 
 var ajax = function (url, method, form, response, $target) {
