@@ -59,6 +59,7 @@ var cpuLoadLive = function (data, $target) {
         var barChartData = {
             labels: label,
             datasets: [{
+                label: 'cpu load rate (%),'
                 fillColor: "#a9cef2",
                 strokeColor: "#7cb5ec",
                 data: cpuload,
