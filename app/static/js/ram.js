@@ -96,7 +96,7 @@ var ramLoadPeriod = function (data, $target) {
 
             subtitle: {
                 text: document.ontouchstart === undefined ?
-                    '点击并拖动鼠标放大局部' : 'Pinch the chart to zoom in'
+                    '点击并拖动鼠标放大局部' : '两指拉动图表放大局部'
             },
 
             xAxis: {
