@@ -151,8 +151,19 @@ var updateCpuLoad = function (data) {
         var timestamp = formatted_time(timestamp);
         // timestamp = Date.now()
         // 在图表数据列表末尾插入数据， 即index等于9
-        CpuChartLive.data.datasets[0].data[9] = cpuload;
-        CpuChartLive.data.labels[9] = timestamp;
+        CpuChartLive.data.labels.splice(0, 1); // remove first label
+        CpuChartLive.data.datsets.forEach(function (dataset) {
+            dataset.data.splice(0, 1); // remove first data point
+        });
+
+        CpuChartLive.update();
+
+        // Add new data
+        CpuChartLive.data.labels.push(timestamp); // add new label at end
+        CpuChartLive.data.datasets.forEach(function (dataset, index) {
+            dataset.data.push(cpuload[9]); // add new data at end
+        });
+
         CpuChartLive.update();
     } else {
         log('请求失败');
