@@ -41,7 +41,6 @@ var updateCpuChart = function () {
     // 请求实时单个cpu负载数据
     var CpuLoadUrl = 'dashboard/cpu/data?limit=1';
     setInterval(function () {
-        CpuChartLive.removeData(0,0);
         get(CpuLoadUrl, updateCpuLoad)
     }, 3000);
 };
@@ -72,9 +71,9 @@ var cpuLoadLive = function (data, $target) {
         };
         var ctx = $target;
         CpuChartLive = new Chart(ctx, {
-                type: 'line',
-                data: chartData,
-            });
+            type: 'line',
+            data: chartData,
+        });
     } else {
         log('请求失败');
     }
@@ -146,10 +145,15 @@ var updateCpuLoad = function (data) {
     if (data.success) {
         var cpuload = data.cpu_load;
         var cpuLoadTime = data.cpu_load_time;
-        // ramLoadTime 有且只有1个元素
+        // cpuload,ramLoadTime 为列表，有且只有1个元素
+        var cpuload = cpuload[0];
         var timestamp = cpuLoadTime[0];
+        var timestamp = formatted_time(timestamp));
         // timestamp = Date.now()
-        CpuChartLive.addData(cpuload, 9, formatted_time(timestamp));
+        // 在图表数据列表末尾插入数据， 即index等于9
+        CpuChartLive.data.datasets[0].data[9] = cpuload;
+        CpuChartLive.data.labels[9] = timestamp;
+        CpuChartLive.update();
     } else {
         log('请求失败');
     }
