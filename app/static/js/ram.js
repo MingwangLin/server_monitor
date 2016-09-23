@@ -55,24 +55,23 @@ var ramLoadLive = function (data, $target) {
             label[i] = formatted_time(label[i])
         }
         ;
-        var chartData = {
+        var lineChartData = {
             labels: label,
             datasets: [{
                 label: 'memory load rate (%)',
                 fill: false,
                 strokeColor: "#7cb5ec",
-                responsive: true,
-                scaleOverride: true,
-                scaleSteps: 10,
-                scaleStepWidth: 10,
-                scaleStartValue: 0,
                 data: ramload,
             }]
         };
-        var ctx = $target;
-        RamCharLive = new Chart(ctx, {
-            type: 'line',
-            data: chartData
+        log('t', $target)
+        var ctx = $target[0].getContext("2d");
+        RamCharLive = new Chart(ctx).Line(lineChartData, {
+            responsive: true,
+            scaleOverride: true,
+            scaleSteps: 10,
+            scaleStepWidth: 10,
+            scaleStartValue: 0
         });
     } else {
         log('请求失败');

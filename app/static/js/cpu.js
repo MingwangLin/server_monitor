@@ -41,6 +41,7 @@ var updateCpuChart = function () {
     // 请求实时单个cpu负载数据
     var CpuLoadUrl = 'dashboard/cpu/data?limit=1';
     setInterval(function () {
+        CpuChartLive.removeData();
         get(CpuLoadUrl, updateCpuLoad)
     }, 3000);
 };
@@ -55,24 +56,23 @@ var cpuLoadLive = function (data, $target) {
             // log('label', label[i])
         }
         ;
-        var chartData = {
+        var lineChartData = {
             labels: label,
             datasets: [{
                 label: 'cpu load rate (%)',
                 fill: false,
                 strokeColor: "#7cb5ec",
-                responsive: true,
-                scaleOverride: true,
-                scaleSteps: 10,
-                scaleStepWidth: 10,
-                scaleStartValue: 0,
                 data: cpuload,
             }]
         };
-        var ctx = $target;
-        CpuChartLive = new Chart(ctx, {
-            type: 'line',
-            data: chartData,
+        log('t', $target)
+        var ctx = $target[0].getContext("2d");
+        CpuChartLive = new Chart(ctx).Line(lineChartData, {
+            responsive: true,
+            scaleOverride: true,
+            scaleSteps: 10,
+            scaleStepWidth: 10,
+            scaleStartValue: 0
         });
     } else {
         log('请求失败');
@@ -145,26 +145,10 @@ var updateCpuLoad = function (data) {
     if (data.success) {
         var cpuload = data.cpu_load;
         var cpuLoadTime = data.cpu_load_time;
-        // cpuload,ramLoadTime 为列表，有且只有1个元素
-        var cpuload = cpuload[0];
+        // ramLoadTime 有且只有1个元素
         var timestamp = cpuLoadTime[0];
-        var timestamp = formatted_time(timestamp);
         // timestamp = Date.now()
-        // 在图表数据列表末尾插入数据， 即index等于9
-        CpuChartLive.data.labels.splice(0, 1); // remove first label
-        CpuChartLive.data.datsets.forEach(function (dataset) {
-            dataset.data.splice(0, 1); // remove first data point
-        });
-
-        CpuChartLive.update();
-
-        // Add new data
-        CpuChartLive.data.labels.push(timestamp); // add new label at end
-        CpuChartLive.data.datasets.forEach(function (dataset, index) {
-            dataset.data.push(cpuload[9]); // add new data at end
-        });
-
-        CpuChartLive.update();
+        CpuChartLive.addData(cpuload, formatted_time(timestamp));
     } else {
         log('请求失败');
     }
