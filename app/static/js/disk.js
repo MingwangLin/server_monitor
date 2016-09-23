@@ -147,7 +147,7 @@ var updateDiskLoad = function (data) {
     if (data.success) {
         var diskread = data.disk_read;
         var diskwrtn = data.disk_wrtn;
-        var diskLoadTime = data.disk_io_time;
+        var disk_io_time = data.disk_io_time;
         // diskread, diskwrtn, diskLoadTime 有且只有1个元素
         var timestamp = disk_io_time[0];
         var diskread = disk_read[0];
