@@ -58,7 +58,7 @@ var ramLoadLive = function (data, $target) {
         var barChartData = {
             labels: label,
             datasets: [{
-                label: 'memory load rate (%),'
+                label: 'memory load rate (%)',
                 fillColor: "#a9cef2",
                 strokeColor: "#7cb5ec",
                 data: ramload,
