@@ -23,7 +23,6 @@ def save_disk_info(output):
     for o in output:
         if len(o) > 0 and o[0] not in ('L', 'D'):  # 通过字符串首字母滤掉不包含CPU信息的行
             o = o.split()
-            log(o)
             if len(o) > 0:
                 disk_read_index = 2
                 disk_wrtn_index = 3
