@@ -42,7 +42,7 @@ var updateRamChart = function () {
     // 请求实时单个ram负载数据
     var RamLoadUrl = 'dashboard/ram/data?limit=1';
     setInterval(function () {
-        barRamChartDemo.removeData();
+        RamCharLive.removeData();
         get(RamLoadUrl, updateRamLoad)
     }, 3000);
 };
@@ -55,20 +55,19 @@ var ramLoadLive = function (data, $target) {
             label[i] = formatted_time(label[i])
         }
         ;
-        var barChartData = {
+        var lineChartData = {
             labels: label,
             datasets: [{
                 label: 'memory load rate (%)',
-                fillColor: "#a9cef2",
+                fill: false,
                 strokeColor: "#7cb5ec",
                 data: ramload,
             }]
         };
         log('t', $target)
         var ctx = $target[0].getContext("2d");
-        barRamChartDemo = new Chart(ctx).Bar(barChartData, {
+        RamCharLive = new Chart(ctx).Line(lineChartData, {
             responsive: true,
-            barValueSpacing: 2,
             scaleOverride: true,
             scaleSteps: 10,
             scaleStepWidth: 10,
@@ -150,7 +149,7 @@ var updateRamLoad = function (data) {
         // ramLoadTime 有且只有1个元素
         var timestamp = ramLoadTime[0];
         // timestamp = Date.now()
-        barRamChartDemo.addData(ramload, formatted_time(timestamp));
+        RamCharLive.addData(ramload, formatted_time(timestamp));
     } else {
         log('请求失败');
     }

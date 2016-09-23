@@ -63,12 +63,12 @@ var diskLoadLive = function (data, $target) {
             labels: label,
             datasets: [{
                 label: "read(KB/s)",
-                fillColor: "#fff",
+                fill: false,
                 strokeColor: "#7cb5ec",
                 data: diskread
             }, {
                 label: "write(KB/s)",
-                fillColor: "#fff",
+                fill: false,
                 strokeColor: "#46464b",
                 data: diskwrtn
             }]

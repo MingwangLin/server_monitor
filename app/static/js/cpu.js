@@ -41,7 +41,7 @@ var updateCpuChart = function () {
     // 请求实时单个cpu负载数据
     var CpuLoadUrl = 'dashboard/cpu/data?limit=1';
     setInterval(function () {
-        barCpuChartDemo.removeData();
+        CpuChartLive.removeData();
         get(CpuLoadUrl, updateCpuLoad)
     }, 3000);
 };
@@ -56,20 +56,19 @@ var cpuLoadLive = function (data, $target) {
             // log('label', label[i])
         }
         ;
-        var barChartData = {
+        var lineChartData = {
             labels: label,
             datasets: [{
                 label: 'cpu load rate (%)',
-                fillColor: "#a9cef2",
+                fill: false,
                 strokeColor: "#7cb5ec",
                 data: cpuload,
             }]
         };
         log('t', $target)
         var ctx = $target[0].getContext("2d");
-        barCpuChartDemo = new Chart(ctx).Bar(barChartData, {
+        CpuChartLive = new Chart(ctx).Line(lineChartData, {
             responsive: true,
-            barValueSpacing: 2,
             scaleOverride: true,
             scaleSteps: 10,
             scaleStepWidth: 10,
@@ -149,7 +148,7 @@ var updateCpuLoad = function (data) {
         // ramLoadTime 有且只有1个元素
         var timestamp = cpuLoadTime[0];
         // timestamp = Date.now()
-        barCpuChartDemo.addData(cpuload, formatted_time(timestamp));
+        CpuChartLive.addData(cpuload, formatted_time(timestamp));
     } else {
         log('请求失败');
     }
