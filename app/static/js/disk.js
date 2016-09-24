@@ -64,12 +64,16 @@ var diskLoadLive = function (data, $target) {
             datasets: [{
                 label: "read(KB/s)",
                 fillColor: "rgba(220,220,220,0)",
-                strokeColor: "#7cb5ec",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
                 data: diskread
             }, {
                 label: "write(KB/s)",
                 fillColor: "rgba(220,220,220,0)",
-                strokeColor: "#46464b",
+                strokeColor: "rgba(220,220,220,1)",
+                pointColor: "rgba(220,220,220,1)",
+                pointStrokeColor: "#fff",
                 data: diskwrtn
             }]
         };
@@ -78,7 +82,7 @@ var diskLoadLive = function (data, $target) {
         DiskChartLive = new Chart(ctx).Line(lineChartData, {
             animationSteps: 60,
             responsive: true,
-            scaleOverride: true,
+            scaleShowVerticalLines: false,
         });
     } else {
         log('请求失败');

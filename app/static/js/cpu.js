@@ -72,7 +72,9 @@ var cpuLoadLive = function (data, $target) {
             scaleOverride: true,
             scaleSteps: 10,
             scaleStepWidth: 10,
-            scaleStartValue: 0
+            scaleStartValue: 0,
+            scaleShowVerticalLines: false,
+
         });
     } else {
         log('请求失败');
