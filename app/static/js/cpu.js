@@ -61,7 +61,9 @@ var cpuLoadLive = function (data, $target) {
             datasets: [{
                 label: 'cpu load rate (%)',
                 fillColor: "rgba(220,220,220,0)",
-                strokeColor: "#7cb5ec",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                pointStrokeColor: "#fff",
                 data: cpuload,
             }]
         };
