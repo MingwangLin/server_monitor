@@ -36,8 +36,8 @@
       <file leaf-file-name="disk.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/static/js/disk.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="126" column="12" selection-start-line="126" selection-start-column="14" selection-end-line="132" selection-end-column="17" />
+            <state relative-caret-position="418">
+              <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -1002,8 +1002,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/static/js/disk.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="126" column="12" selection-start-line="126" selection-start-column="14" selection-end-line="132" selection-end-column="17" />
+        <state relative-caret-position="418">
+          <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
           <folding />
         </state>
       </provider>

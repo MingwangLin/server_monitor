@@ -79,9 +79,6 @@ var diskLoadLive = function (data, $target) {
             animationSteps: 60,
             responsive: true,
             scaleOverride: true,
-            scaleSteps: 6,
-            scaleStepWidth: 50,
-            scaleStartValue: 0
         });
     } else {
         log('请求失败');
