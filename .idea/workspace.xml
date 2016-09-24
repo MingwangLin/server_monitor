@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48a8330e-a994-4715-89a1-450427e98997" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/css/footer.css" afterPath="$PROJECT_DIR$/app/static/css/footer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/main.html" afterPath="$PROJECT_DIR$/app/templates/main.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/static/js/disk.js" afterPath="$PROJECT_DIR$/app/static/js/disk.js" />
     </list>
     <ignored path="server_monitor.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="disk.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="disk.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/static/js/disk.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1056">
-              <caret line="70" column="48" selection-start-line="70" selection-start-column="48" selection-end-line="70" selection-end-column="48" />
+            <state relative-caret-position="176">
+              <caret line="126" column="12" selection-start-line="126" selection-start-column="14" selection-end-line="132" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -115,7 +113,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="footer.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/static/css/footer.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="308">
@@ -145,10 +143,10 @@
         <option value="$PROJECT_DIR$/app/static/js/chart.min.js" />
         <option value="$PROJECT_DIR$/app/static/js/ram.js" />
         <option value="$PROJECT_DIR$/app/static/js/cpu.js" />
-        <option value="$PROJECT_DIR$/app/static/js/disk.js" />
         <option value="$PROJECT_DIR$/app/static/css/keen-dashboards.css" />
         <option value="$PROJECT_DIR$/app/templates/main.html" />
         <option value="$PROJECT_DIR$/app/static/css/footer.css" />
+        <option value="$PROJECT_DIR$/app/static/js/disk.js" />
       </list>
     </option>
   </component>
@@ -978,14 +976,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/js/disk.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1056">
-          <caret line="70" column="48" selection-start-line="70" selection-start-column="48" selection-end-line="70" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/static/css/keen-dashboards.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
@@ -1006,6 +996,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
           <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/js/disk.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="126" column="12" selection-start-line="126" selection-start-column="14" selection-end-line="132" selection-end-column="17" />
           <folding />
         </state>
       </provider>

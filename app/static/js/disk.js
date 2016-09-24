@@ -124,13 +124,13 @@ var diskLoadPeriod = function (data, $target) {
             tooltip: {
                 valueSuffix: 'KB/s'
             },
-
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'middle',
-                borderWidth: 0
-            },
+            //
+            // legend: {
+            //     layout: 'vertical',
+            //     align: 'right',
+            //     verticalAlign: 'middle',
+            //     borderWidth: 0
+            // },
             series: [{
                 name: 'read',
                 data: diskread
