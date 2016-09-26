@@ -51,14 +51,14 @@
                 <div class="chart-title">
                     <div class="btn-group-xs">CPU负载(%)
                         <button type="button" id="id-button-cpu-live" class="btn btn-default">实时</button>
+                        <button type="button" id="id-button-cpu-oneminute" class="btn btn-default">过去1分钟</button>
                         <button type="button" id="id-button-cpu-onehour" class="btn btn-default">过去1小时</button>
-                        <button type="button" id="id-button-cpu-oneday" class="btn btn-default">过去1天</button>
                     </div>
                 </div>
                 <div class="chart-stage">
                     <canvas id="id-canvas-cpu-live"></canvas>
+                    <div id="id-div-cpu-oneminute"></div>
                     <div id="id-div-cpu-onehour"></div>
-                    <div id="id-div-cpu-oneday"></div>
                 </div>
                 <div class="chart-notes">
                     cpu load
@@ -71,14 +71,14 @@
                 <div class="chart-title">
                     <div class="btn-group-xs">内存负载(%)
                         <button type="button" id="id-button-ram-live" class="btn btn-default">实时</button>
+                        <button type="button" id="id-button-ram-oneminute" class="btn btn-default">过去1分钟</button>
                         <button type="button" id="id-button-ram-onehour" class="btn btn-default">过去1小时</button>
-                        <button type="button" id="id-button-ram-oneday" class="btn btn-default">过去1天</button>
                     </div>
                 </div>
                 <div class="chart-stage">
                     <canvas id="id-canvas-ram-live"></canvas>
+                    <div id="id-div-ram-oneminute"></div>
                     <div id="id-div-ram-onehour"></div>
-                    <div id="id-div-ram-oneday"></div>
                 </div>
                 <div class="chart-notes">
                     memeory load
@@ -96,14 +96,14 @@
                 <div class="chart-title">
                     <div class="btn-group-xs">硬盘 读/写(KB/s)
                         <button type="button" id="id-button-disk-live" class="btn btn-default">实时</button>
+                        <button type="button" id="id-button-disk-oneminute" class="btn btn-default">过去1分钟</button>
                         <button type="button" id="id-button-disk-onehour" class="btn btn-default">过去1小时</button>
-                        <button type="button" id="id-button-disk-oneday" class="btn btn-default">过去1天</button>
                     </div>
                 </div>
                 <div class="chart-stage">
                     <canvas id="id-canvas-disk-live"></canvas>
+                    <div id="id-div-disk-oneminute"></div>
                     <div id="id-div-disk-onehour"></div>
-                    <div id="id-div-disk-oneday"></div>
                 </div>
                 <div class="chart-notes">
                     disk I/O

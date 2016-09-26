@@ -1,39 +1,39 @@
 var RamChartSetup = function () {
     var ramLoadLiveUrl = 'dashboard/ram/data?limit=10';
     get(ramLoadLiveUrl, response = ramLoadLive, $target = $('#id-canvas-ram-live'));
+    var ramLoadOneMinUrl = 'dashboard/ram/data?limit=20';
+    get(ramLoadOneMinUrl, response = ramLoadPeriod, $target = $('#id-div-ram-oneminute'));
     var ramLoadOneHourUrl = 'dashboard/ram/data?limit=1200';
     get(ramLoadOneHourUrl, response = ramLoadPeriod, $target = $('#id-div-ram-onehour'));
-    var ramLoadOneDayUrl = 'dashboard/ram/data?limit=298800';
-    get(ramLoadOneDayUrl, response = ramLoadPeriod, $target = $('#id-div-ram-oneday'));
 
-    var tabAction = function (ramLive, ramOneHour, ramOneDay) {
+    var tabAction = function (ramLive, ramOneMin, ramOneHour) {
         $('#id-canvas-ram-live').toggle(ramLive);
+        $('#id-div-ram-oneminute').toggle(ramOneMin);
         $('#id-div-ram-onehour').toggle(ramOneHour);
-        $('#id-div-ram-oneday').toggle(ramOneDay);
     };
 
     $('#id-button-ram-live').on('click', function () {
         var ramLive = true;
+        var ramOneMin = false;
         var ramOneHour = false;
-        var ramOneDay = false;
-        tabAction(ramLive, ramOneHour, ramOneDay);
+        tabAction(ramLive, ramOneMin, ramOneHour);
+    });
+
+    $('#id-button-ram-oneminute').on('click', function () {
+        var ramLive = false;
+        var ramOneMin = true;
+        var ramOneHour = false;
+        tabAction(ramLive, ramOneMin, ramOneHour);
+        // 显示一分钟的ram负载数据
+
     });
 
     $('#id-button-ram-onehour').on('click', function () {
         var ramLive = false;
+        var ramOneMin = false;
         var ramOneHour = true;
-        var ramOneDay = false;
-        tabAction(ramLive, ramOneHour, ramOneDay);
+        tabAction(ramLive, ramOneMin, ramOneHour);
         // 显示一个小时的ram负载数据
-
-    });
-
-    $('#id-button-ram-oneday').on('click', function () {
-        var ramLive = false;
-        var ramOneHour = false;
-        var ramOneDay = true;
-        tabAction(ramLive, ramOneHour, ramOneDay);
-        // 显示一天的ram负载数据
     });
 };
 

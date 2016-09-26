@@ -1,39 +1,39 @@
 var CpuChartSetup = function () {
     var cpuLoadLiveUrl = 'dashboard/cpu/data?limit=10';
     get(cpuLoadLiveUrl, response = cpuLoadLive, $target = $('#id-canvas-cpu-live'));
+    var cpuLoadOneMinUrl = 'dashboard/cpu/data?limit=20';
+    get(cpuLoadOneMinUrl, response = cpuLoadPeriod, $target = $('#id-div-cpu-oneminute'));
     var cpuLoadOneHourUrl = 'dashboard/cpu/data?limit=1200';
     get(cpuLoadOneHourUrl, response = cpuLoadPeriod, $target = $('#id-div-cpu-onehour'));
-    var cpuLoadOneDayUrl = 'dashboard/cpu/data?limit=298800';
-    get(cpuLoadOneDayUrl, response = cpuLoadPeriod, $target = $('#id-div-cpu-oneday'));
 
-    var tabAction = function (cpuLive, cpuOneHour, cpuOneDay) {
+    var tabAction = function (cpuLive, cpuOneMin, cpuOneHour) {
         $('#id-canvas-cpu-live').toggle(cpuLive);
+        $('#id-div-cpu-oneminute').toggle(cpuOneMin);
         $('#id-div-cpu-onehour').toggle(cpuOneHour);
-        $('#id-div-cpu-oneday').toggle(cpuOneDay);
     };
 
     $('#id-button-cpu-live').on('click', function () {
         var cpuLive = true;
+        var cpuOneMin = false;
         var cpuOneHour = false;
-        var cpuOneDay = false;
-        tabAction(cpuLive, cpuOneHour, cpuOneDay);
+        tabAction(cpuLive, cpuOneMin, cpuOneHour);
+    });
+
+    $('#id-button-cpu-oneminute').on('click', function () {
+        var cpuLive = false;
+        var cpuOneMin = true;
+        var cpuOneHour = false;
+        tabAction(cpuLive, cpuOneMin, cpuOneHour);
+        // 请求一分钟的cpu负载数据
+
     });
 
     $('#id-button-cpu-onehour').on('click', function () {
         var cpuLive = false;
+        var cpuOneMin = false;
         var cpuOneHour = true;
-        var cpuOneDay = false;
-        tabAction(cpuLive, cpuOneHour, cpuOneDay);
+        tabAction(cpuLive, cpuOneMin, cpuOneHour);
         // 请求一个小时的cpu负载数据
-
-    });
-
-    $('#id-button-cpu-oneday').on('click', function () {
-        var cpuLive = false;
-        var cpuOneHour = false;
-        var cpuOneDay = true;
-        tabAction(cpuLive, cpuOneHour, cpuOneDay);
-        // 请求一天的cpu负载数据
     });
 };
 

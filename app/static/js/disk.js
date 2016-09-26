@@ -1,39 +1,39 @@
 var DiskChartSetup = function () {
     var diskLoadLiveUrl = 'dashboard/disk/data?limit=10';
     get(diskLoadLiveUrl, response = diskLoadLive, $target = $('#id-canvas-disk-live'));
+    var diskLoadOneMinUrl = 'dashboard/disk/data?limit=20';
+    get(diskLoadOneMinUrl, response = diskLoadPeriod, $target = $('#id-div-disk-oneminute'));
     var diskLoadOneHourUrl = 'dashboard/disk/data?limit=1200';
     get(diskLoadOneHourUrl, response = diskLoadPeriod, $target = $('#id-div-disk-onehour'));
-    var diskLoadOneDayUrl = 'dashboard/disk/data?limit=298800';
-    get(diskLoadOneDayUrl, response = diskLoadPeriod, $target = $('#id-div-disk-oneday'));
 
-    var tabAction = function (diskLive, diskOneHour, diskOneDay) {
+    var tabAction = function (diskLive, diskOneMin, diskOneHour) {
         $('#id-canvas-disk-live').toggle(diskLive);
+        $('#id-div-disk-oneminute').toggle(diskOneMin);
         $('#id-div-disk-onehour').toggle(diskOneHour);
-        $('#id-div-disk-oneday').toggle(diskOneDay);
     };
 
     $('#id-button-disk-live').on('click', function () {
         var diskLive = true;
+        var diskOneMin = false;
         var diskOneHour = false;
-        var diskOneDay = false;
-        tabAction(diskLive, diskOneHour, diskOneDay);
+        tabAction(diskLive, diskOneMin, diskOneHour);
+    });
+
+    $('#id-button-disk-oneminute').on('click', function () {
+        var diskLive = false;
+        var diskOneMin = true;
+        var diskOneHour = false;
+        tabAction(diskLive, diskOneMin, diskOneHour);
+        // 显示一分钟的disk负载数据
+
     });
 
     $('#id-button-disk-onehour').on('click', function () {
         var diskLive = false;
+        var diskOneMin = false;
         var diskOneHour = true;
-        var diskOneDay = false;
-        tabAction(diskLive, diskOneHour, diskOneDay);
+        tabAction(diskLive, diskOneMin, diskOneHour);
         // 显示一个小时的disk负载数据
-
-    });
-
-    $('#id-button-disk-oneday').on('click', function () {
-        var diskLive = false;
-        var diskOneHour = false;
-        var diskOneDay = true;
-        tabAction(diskLive, diskOneHour, diskOneDay);
-        // 显示一天的disk负载数据
     });
 };
 
