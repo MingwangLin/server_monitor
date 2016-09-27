@@ -76,7 +76,6 @@ var cpuLoadLive = function (data, $target) {
             scaleStepWidth: 10,
             scaleStartValue: 0,
             scaleShowVerticalLines: false,
-
         });
     } else {
         log('请求失败');
