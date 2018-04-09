@@ -1,9 +1,11 @@
 import subprocess
 import time
+import pymongo
 from pymongo import MongoClient
 
 client = MongoClient()
 db = client.serverData
+db.disk.create_index([("timestamp", pymongo.DESCENDING)])
 
 
 def log(*args):
