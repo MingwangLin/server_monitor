@@ -21,7 +21,7 @@ def cpu_charts_data():
     limit = args.get('limit', '')
     log('limit', limit)
     limit = int(limit)
-    cursor = db.cpu.find().sort("timestamp", pymongo.DESCENDING)
+    cursor = db.cpu.find().sort("timestamp", pymongo.DESCENDING).limit(limit)
     cpu_load = []  # 列表中的元素为CPU每秒负载率
     cpu_load_time = []  # 列表中的元素为CPU每秒负载率对应的时间点
     cpu_load_couples = []  # 列表中的元素为子列表，每个子列表有2个元素：CPU每秒负载率以及其对应的时间点
@@ -51,7 +51,7 @@ def ram_charts_data():
     limit = args.get('limit', '')
     log('limit', limit)
     limit = int(limit)
-    cursor = db.ram.find().sort("timestamp", pymongo.DESCENDING)
+    cursor = db.ram.find().sort("timestamp", pymongo.DESCENDING).limit(limit)
     ram_load = []  # 列表中的元素为RAM每秒负载率
     ram_load_time = []  # 列表中的元素为RAM每秒负载率对应的时间点
     ram_load_couples = []  # 列表中的元素为子列表，每个子列表有2个元素：RAM每秒负载率以及其对应的时间点
@@ -81,7 +81,7 @@ def disk_charts_data():
     limit = args.get('limit', '')
     log('limit', limit)
     limit = int(limit)
-    cursor = db.disk.find().sort("timestamp", pymongo.DESCENDING)
+    cursor = db.disk.find().sort("timestamp", pymongo.DESCENDING).limit(limit)
     disk_read = []  # 列表中的元素为DISK每秒读数据大小
     disk_wrtn = []  # 列表中的元素为DISK每秒写数据大小
     disk_io_time = []  # 列表中的元素为DISK每秒I/O对应的时间点
