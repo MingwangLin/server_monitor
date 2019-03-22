@@ -1,4 +1,4 @@
-from app import init_app
+from web_app import init_app
 
 
 def rebuild_db():

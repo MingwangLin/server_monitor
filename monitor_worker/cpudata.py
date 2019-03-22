@@ -8,7 +8,6 @@ db = client.serverData
 db.cpu.create_index([("timestamp", pymongo.DESCENDING)])
 
 
-
 def log(*args):
     t = time.time()
     tt = time.strftime(r'%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
