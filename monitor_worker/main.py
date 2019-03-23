@@ -6,18 +6,27 @@ from diskdata import disk_info_output, save_disk_info
 
 async def coroutine_save_cpu_info():
     cpu_info = cpu_info_output()
+    print('save_cpu_info 0')
     save_cpu_info(cpu_info)
+    print('save_cpu_info 1')
+
 
 
 
 async def coroutine_save_ram_info():
     ram_info = ram_info_output()
+    print('save_ram_info 0')
     save_ram_info(ram_info)
+    print('save_ram_info 1')
+
 
 
 async def coroutine_save_disk_info():
     disk_info = disk_info_output()
+    print('save_disk_info 0')
     save_disk_info(disk_info)
+    print('save_disk_info 0')
+
 
 
 def main():
