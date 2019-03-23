@@ -12,7 +12,7 @@ db = client.serverData
 
 @api.route('/')
 def homepage_view():
-    return render_template('main.html')
+    return render_template('index.html')
 
 
 @api.route('/dashboard/cpu/data', methods=['GET'])
