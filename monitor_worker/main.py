@@ -1,5 +1,5 @@
 import asyncio
-from cpudata import cpu_info_output, save_cpu_info
+from cpudata import cpu_info_output, save_cpu_info, db
 from ramdata import ram_info_output, save_ram_info
 from diskdata import disk_info_output, save_disk_info
 
@@ -11,14 +11,11 @@ async def coroutine_save_cpu_info():
     print('save_cpu_info 1')
 
 
-
-
 async def coroutine_save_ram_info():
     ram_info = ram_info_output()
     print('save_ram_info 0')
     save_ram_info(ram_info)
     print('save_ram_info 1')
-
 
 
 async def coroutine_save_disk_info():
@@ -28,8 +25,12 @@ async def coroutine_save_disk_info():
     print('save_disk_info 0')
 
 
-
 def main():
+    # 清空数据
+    db.cpu.delete_many({})
+    db.ram.delete_many({})
+    db.disk.delete_many({})
+
     # 获取EventLoop:
     loop = asyncio.get_event_loop()
 
