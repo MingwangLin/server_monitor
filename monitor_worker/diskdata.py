@@ -16,7 +16,7 @@ def log(*args):
 
 
 def disk_info_output():
-    cmd = ['iostat -d 3']
+    cmd = ['/usr/bin/iostat -d 3']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     output = (line.decode('utf-8') for line in pipe.stdout)
     return output
