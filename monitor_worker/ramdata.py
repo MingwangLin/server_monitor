@@ -2,17 +2,12 @@ import subprocess
 import time
 import pymongo
 from pymongo import MongoClient
+from common import log
+
 
 client = MongoClient()
 db = client.serverData
 db.disk.create_index([("timestamp", pymongo.DESCENDING)])
-
-
-def log(*args):
-    t = time.time()
-    tt = time.strftime(r'%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
-    print(tt, *args)
-
 
 def ram_info_output():
     cmd = ['/usr/bin/sar -r 3']
@@ -38,11 +33,11 @@ def save_ram_info(output):
                 )
 
 
-def main():
-    # db.ram.delete_many({})
-    ram_info = ram_info_output()
-    save_ram_info(ram_info)
-
-
-if __name__ == '__main__':
-    main()
+# def main():
+#     # db.ram.delete_many({})
+#     ram_info = ram_info_output()
+#     save_ram_info(ram_info)
+#
+#
+# if __name__ == '__main__':
+#     main()

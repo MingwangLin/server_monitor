@@ -2,16 +2,11 @@ import subprocess
 import time
 import pymongo
 from pymongo import MongoClient
+from common import log
 
 client = MongoClient()
 db = client.serverData
 db.cpu.create_index([("timestamp", pymongo.DESCENDING)])
-
-
-def log(*args):
-    t = time.time()
-    tt = time.strftime(r'%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
-    print(tt, *args)
 
 
 def cpu_info_output():
@@ -52,15 +47,15 @@ def find_all_docments():
     for document in cursor:
         log(document)
 
-
-def main():
-    db.cpu.delete_many({})
-    db.ram.delete_many({})
-    db.disk.delete_many({})
-    cpu_info = cpu_info_output()
-    save_cpu_info(cpu_info)
-    # find_all_docments()
-
-
-if __name__ == '__main__':
-    main()
+#
+# def main():
+#     db.cpu.delete_many({})
+#     db.ram.delete_many({})
+#     db.disk.delete_many({})
+#     cpu_info = cpu_info_output()
+#     save_cpu_info(cpu_info)
+#     # find_all_docments()
+#
+#
+# if __name__ == '__main__':
+#     main()

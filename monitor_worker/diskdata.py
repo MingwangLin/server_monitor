@@ -2,17 +2,12 @@ import subprocess
 import time
 import pymongo
 from pymongo import MongoClient
+from common import log
+
 
 client = MongoClient()
 db = client.serverData
 db.disk.create_index([("timestamp", pymongo.DESCENDING)])
-
-
-
-def log(*args):
-    t = time.time()
-    tt = time.strftime(r'%Y/%m/%d %H:%M:%S', time.localtime(time.time()))
-    print(tt, *args)
 
 
 def disk_info_output():
@@ -42,12 +37,12 @@ def save_disk_info(output):
                     }
                 )
 
-
-def main():
-    # db.disk.delete_many({})
-    disk_info = disk_info_output()
-    save_disk_info(disk_info)
-
-
-if __name__ == '__main__':
-    main()
+#
+# def main():
+#     # db.disk.delete_many({})
+#     disk_info = disk_info_output()
+#     save_disk_info(disk_info)
+#
+#
+# if __name__ == '__main__':
+#     main()
