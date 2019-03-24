@@ -1,28 +1,22 @@
 import asyncio
-from cpudata import cpu_info_generator, save_cpu_info, db
-from ramdata import ram_info_generator, save_ram_info
-from diskdata import disk_info_generator, save_disk_info
+from cpudata import save_cpu_info, db
+from ramdata import save_ram_info
+from diskdata import save_disk_info
 
 
 async def task_save_cpu_info():
-    info_generator =  cpu_info_generator()
-    print('save_cpu_info 0')
-    await save_cpu_info(info_generator)
-    print('save_cpu_info 1')
+    await save_cpu_info()
+    print('save_cpu_info')
 
 
 async def task_save_ram_info():
-    info_generator = ram_info_generator()
-    print('save_ram_info 0')
-    await save_ram_info(info_generator)
-    print('save_ram_info 1')
+    await save_ram_info()
+    print('save_ram_info')
 
 
 async def task_save_disk_info():
-    info_generator = disk_info_generator()
-    print('save_disk_info 0')
-    await save_disk_info(info_generator)
-    print('save_disk_info 1')
+    await save_disk_info()
+    print('save_disk_info')
 
 
 def main():
