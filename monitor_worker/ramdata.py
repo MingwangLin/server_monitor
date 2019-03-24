@@ -10,7 +10,7 @@ db.disk.create_index([("timestamp", pymongo.DESCENDING)])
 
 
 async def save_ram_info():
-    cmd = ['/usr/bin/sar -r']
+    cmd = ['/usr/bin/sar -r 0']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     for line in pipe.stdout:
         o = line.decode('utf-8')
