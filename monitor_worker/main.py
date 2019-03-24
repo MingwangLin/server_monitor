@@ -22,7 +22,7 @@ async def task_save_disk_info():
     info_generator = disk_info_generator()
     print('save_disk_info 0')
     await save_disk_info(info_generator)
-    print('save_disk_info 0')
+    print('save_disk_info 1')
 
 
 def main():
