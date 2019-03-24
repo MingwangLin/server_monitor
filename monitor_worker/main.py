@@ -29,14 +29,15 @@ def main():
     db.disk.delete_many({})
 
     # 获取EventLoop:
-    loop = asyncio.get_event_loop()
-
-    tasks = [task_save_cpu_info(),
-             task_save_ram_info(),
-             task_save_disk_info()]
-
     while True:
+        loop = asyncio.get_event_loop()
+
+        tasks = [task_save_cpu_info(),
+                 task_save_ram_info(),
+                 task_save_disk_info()]
+
         loop.run_until_complete(asyncio.wait(tasks))
+        loop.close()
 
 
 if __name__ == '__main__':
