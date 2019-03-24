@@ -14,12 +14,12 @@ def disk_info_generator():
     cmd = ['/usr/bin/iostat -d 3']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     info_generator = (line.decode('utf-8') for line in pipe.stdout)
-    return info_generator
+    yield next(info_generator)
 
 
 async def save_disk_info(info_generator):
     while True:
-        o = await info_generator()
+        o = await info_generator
         if len(o) > 0 and o[0] not in ('L', 'D'):  # 通过字符串首字母滤掉不包含CPU信息的行
             o = o.split()
             if len(o) > 0:
