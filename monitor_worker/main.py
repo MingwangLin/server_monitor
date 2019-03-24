@@ -35,9 +35,8 @@ def main():
              task_save_ram_info(),
              task_save_disk_info()]
 
-    # 执行coroutine
-    loop.run_until_complete(asyncio.wait(tasks))
-    loop.run_forever()
+    while True:
+        loop.run_until_complete(asyncio.wait(tasks))
 
 
 if __name__ == '__main__':
