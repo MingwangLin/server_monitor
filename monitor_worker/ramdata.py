@@ -8,16 +8,12 @@ client = MongoClient()
 db = client.serverData
 db.disk.create_index([("timestamp", pymongo.DESCENDING)])
 
-async def get_generator():
-    cmd = ['/usr/bin/sar -r 3']
-    pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    info_generator = (line.decode('utf-8') for line in pipe.stdout)
-    return next(info_generator)
-
 
 async def save_ram_info():
-    while True:
-        o = await get_generator()
+    cmd = ['/usr/bin/sar -r']
+    pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    for line in pipe.stdout:
+        o = line.decode('utf-8')
         o = o.split()
         if len(o) > 0:
             ram_load_index = 4

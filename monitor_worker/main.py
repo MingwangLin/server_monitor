@@ -6,16 +6,19 @@ from diskdata import save_disk_info
 
 async def task_save_cpu_info():
     await save_cpu_info()
+    await asyncio.sleep(3)
     print('save_cpu_info')
 
 
 async def task_save_ram_info():
     await save_ram_info()
+    await asyncio.sleep(3)
     print('save_ram_info')
 
 
 async def task_save_disk_info():
     await save_disk_info()
+    await asyncio.sleep(3)
     print('save_disk_info')
 
 

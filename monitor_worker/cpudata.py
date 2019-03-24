@@ -18,12 +18,14 @@ async def get_generator():
 
 
 async def save_cpu_info():
-    while True:
-        o = await get_generator()
-        # o = o.split()
-        # # log(o)
-        # cpu_idle_index = -1
-        # cpu_idle = o[cpu_idle_index]
+    cmd = ['/usr/bin/iostat']
+    pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    # o = o.split()
+    # # log(o)
+    # cpu_idle_index = -1
+    # cpu_idle = o[cpu_idle_index]
+    for line in pipe.stdout:
+        o = line.decode('utf-8')
         if len(o) > 0 and o[0] not in ('L', 'a', 'D', 'v'):  # 通过字符串首字母滤掉不包含CPU信息的行
             # cpu_idle_index = -4
             # cpu_idle = o[cpu_idle_index]
@@ -42,7 +44,7 @@ async def save_cpu_info():
                         "timestamp": timestamp,
                     }
                 )
-
+    return
 
 def find_all_docments():
     cursor = db.cpu.find()
