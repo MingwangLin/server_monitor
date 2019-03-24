@@ -10,13 +10,6 @@ db = client.serverData
 db.cpu.create_index([("timestamp", pymongo.DESCENDING)])
 
 
-async def get_generator():
-    cmd = ['/usr/bin/iostat 3']
-    pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    info_generator = (line.decode('utf-8') for line in pipe.stdout)
-    return next(info_generator)
-
-
 async def save_cpu_info():
     cmd = ['/usr/bin/iostat']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
@@ -45,6 +38,7 @@ async def save_cpu_info():
                     }
                 )
     return
+
 
 def find_all_docments():
     cursor = db.cpu.find()
