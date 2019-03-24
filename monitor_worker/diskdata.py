@@ -9,14 +9,17 @@ client = MongoClient()
 db = client.serverData
 db.disk.create_index([("timestamp", pymongo.DESCENDING)])
 
-
-def save_disk_info():
+async def get_generator():
     cmd = ['/usr/bin/iostat -d 3']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     info_generator = (line.decode('utf-8') for line in pipe.stdout)
+    return next(info_generator)
+
+
+async def save_disk_info():
 
     while True:
-        o = yield next(info_generator)
+        o = await get_generator()
         if len(o) > 0 and o[0] not in ('L', 'D'):  # 通过字符串首字母滤掉不包含CPU信息的行
             o = o.split()
             if len(o) > 0:

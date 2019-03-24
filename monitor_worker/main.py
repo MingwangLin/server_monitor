@@ -5,17 +5,17 @@ from diskdata import save_disk_info
 
 
 async def task_save_cpu_info():
-    yield next(save_cpu_info())
+    await save_cpu_info()
     print('save_cpu_info')
 
 
 async def task_save_ram_info():
-    yield next(save_ram_info())
+    await save_ram_info()
     print('save_ram_info')
 
 
 async def task_save_disk_info():
-    yield next(save_disk_info())
+    await save_disk_info()
     print('save_disk_info')
 
 
