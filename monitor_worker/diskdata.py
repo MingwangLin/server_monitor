@@ -14,7 +14,7 @@ def disk_info_generator():
     cmd = ['/usr/bin/iostat -d 3']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     info_generator = (line.decode('utf-8') for line in pipe.stdout)
-    yield next(info_generator)
+    return next(info_generator)
 
 
 async def save_disk_info(info_generator):
