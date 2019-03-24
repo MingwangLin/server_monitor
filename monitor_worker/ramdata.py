@@ -16,9 +16,9 @@ def ram_info_generator():
     return info_generator
 
 
-def save_ram_info(info_generator):
+async def save_ram_info(info_generator):
     while True:
-        o = await next(info_generator())
+        o = await info_generator()
         o = o.split()
         if len(o) > 0:
             ram_load_index = 4

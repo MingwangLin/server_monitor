@@ -16,9 +16,9 @@ def cpu_info_generator():
     return info_generator
 
 
-def save_cpu_info(info_generator):
+async def save_cpu_info(info_generator):
     while True:
-        o = await next(info_generator())
+        o = await info_generator()
         # o = o.split()
         # # log(o)
         # cpu_idle_index = -1
