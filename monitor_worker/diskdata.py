@@ -10,15 +10,16 @@ db = client.serverData
 db.disk.create_index([("timestamp", pymongo.DESCENDING)])
 
 
-def disk_info_output():
+def disk_info_generator():
     cmd = ['/usr/bin/iostat -d 3']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    output = (line.decode('utf-8') for line in pipe.stdout)
-    return output
+    info_generator = (line.decode('utf-8') for line in pipe.stdout)
+    return info_generator
 
 
-def save_disk_info(output):
-    for o in output:
+async def save_disk_info(info_generator):
+    while True:
+        o = await next(info_generator())
         if len(o) > 0 and o[0] not in ('L', 'D'):  # 通过字符串首字母滤掉不包含CPU信息的行
             o = o.split()
             if len(o) > 0:
@@ -36,7 +37,6 @@ def save_disk_info(output):
                         "timestamp": timestamp,
                     }
                 )
-
 #
 # def main():
 #     # db.disk.delete_many({})

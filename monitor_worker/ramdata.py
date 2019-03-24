@@ -9,15 +9,16 @@ client = MongoClient()
 db = client.serverData
 db.disk.create_index([("timestamp", pymongo.DESCENDING)])
 
-def ram_info_output():
+def ram_info_generator():
     cmd = ['/usr/bin/sar -r 3']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    output = (line.decode('utf-8') for line in pipe.stdout)
-    return output
+    info_generator = (line.decode('utf-8') for line in pipe.stdout)
+    return info_generator
 
 
-def save_ram_info(output):
-    for o in output:
+async def save_ram_info(info_generator):
+    while True:
+        o = await next(info_generator())
         o = o.split()
         if len(o) > 0:
             ram_load_index = 4
@@ -31,7 +32,7 @@ def save_ram_info(output):
                         "timestamp": timestamp,
                     }
                 )
-
+        yield
 
 # def main():
 #     # db.ram.delete_many({})
