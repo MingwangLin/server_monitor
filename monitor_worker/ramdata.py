@@ -13,12 +13,12 @@ def ram_info_generator():
     cmd = ['/usr/bin/sar -r 3']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     info_generator = (line.decode('utf-8') for line in pipe.stdout)
-    return next(info_generator)
+    return info_generator
 
 
-async def save_ram_info(info_generator):
+def save_ram_info(info_generator):
     while True:
-        o = await info_generator
+        o = next(info_generator)
         o = o.split()
         if len(o) > 0:
             ram_load_index = 4
