@@ -17,7 +17,7 @@ def disk_info_generator():
     return info_generator
 
 
-async def save_disk_info(info_generator):
+def save_disk_info(info_generator):
     while True:
         o = await next(info_generator())
         if len(o) > 0 and o[0] not in ('L', 'D'):  # 通过字符串首字母滤掉不包含CPU信息的行
