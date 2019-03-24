@@ -16,7 +16,7 @@ async def save_disk_info():
     info_generator = (line.decode('utf-8') for line in pipe.stdout)
 
     while True:
-        o = await next(info_generator)
+        o = yield next(info_generator)
         if len(o) > 0 and o[0] not in ('L', 'D'):  # 通过字符串首字母滤掉不包含CPU信息的行
             o = o.split()
             if len(o) > 0:

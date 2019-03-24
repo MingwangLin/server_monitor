@@ -15,7 +15,7 @@ async def save_cpu_info():
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     info_generator = (line.decode('utf-8') for line in pipe.stdout)
     while True:
-        o = await next(info_generator)
+        o = yield next(info_generator)
         # o = o.split()
         # # log(o)
         # cpu_idle_index = -1

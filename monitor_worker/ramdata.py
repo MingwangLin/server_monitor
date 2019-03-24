@@ -15,7 +15,7 @@ async def save_ram_info():
     info_generator = (line.decode('utf-8') for line in pipe.stdout)
 
     while True:
-        o = await next(info_generator)
+        o = yield next(info_generator)
         o = o.split()
         if len(o) > 0:
             ram_load_index = 4
@@ -29,7 +29,6 @@ async def save_ram_info():
                         "timestamp": timestamp,
                     }
                 )
-
 # def main():
 #     # db.ram.delete_many({})
 #     ram_info = ram_info_output()
