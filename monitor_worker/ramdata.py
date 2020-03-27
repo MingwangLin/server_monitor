@@ -2,11 +2,7 @@ import subprocess
 import time
 import pymongo
 from pymongo import MongoClient
-from common import log
-
-client = MongoClient()
-db = client.serverData
-db.disk.create_index([("timestamp", pymongo.DESCENDING)])
+from monitor_worker.mongo_client import db
 
 
 async def save_ram_info():
@@ -27,11 +23,3 @@ async def save_ram_info():
                         "timestamp": timestamp,
                     }
                 )
-# def main():
-#     # db.ram.delete_many({})
-#     ram_info = ram_info_output()
-#     save_ram_info(ram_info)
-#
-#
-# if __name__ == '__main__':
-#     main()

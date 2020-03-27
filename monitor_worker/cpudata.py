@@ -3,11 +3,7 @@ import time
 import pymongo
 import asyncio
 from pymongo import MongoClient
-from common import log
-
-client = MongoClient()
-db = client.serverData
-db.cpu.create_index([("timestamp", pymongo.DESCENDING)])
+from monitor_worker.mongo_client import db
 
 
 async def save_cpu_info():
@@ -44,16 +40,3 @@ def find_all_docments():
     cursor = db.cpu.find()
     for document in cursor:
         log(document)
-
-#
-# def main():
-#     db.cpu.delete_many({})
-#     db.ram.delete_many({})
-#     db.disk.delete_many({})
-#     cpu_info = cpu_info_output()
-#     save_cpu_info(cpu_info)
-#     # find_all_docments()
-#
-#
-# if __name__ == '__main__':
-#     main()

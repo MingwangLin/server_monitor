@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  web:
+    depends_on:
+      - mongodb
+      - worker
+    environment:
+      PYTHONUNBUFFERED: '1'
+      TZ: 'Asia/Shanghai'
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+
+  worker:
+    depends_on:
+      - mongodb
+    environment:
+      PYTHONUNBUFFERED: '1'
+      TZ: 'Asia/Shanghai'
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+
+  mongodb:
+    image: "mongo:latest"
+
+
+
+

@@ -1,7 +1,8 @@
 import asyncio
-from cpudata import save_cpu_info, db
-from ramdata import save_ram_info
-from diskdata import save_disk_info
+from monitor_worker.cpudata import save_cpu_info, db
+from monitor_worker.ramdata import save_ram_info
+from monitor_worker.diskdata import save_disk_info
+from server_monitor import init_app
 
 
 async def task_save_cpu_info():

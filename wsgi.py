@@ -1,5 +1,5 @@
 import logging
-from web_app import init_app
+from server_monitor import init_app
 
 app = init_app()
 app.debug = True

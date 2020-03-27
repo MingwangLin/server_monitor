@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: linmingwang/monitor:latest
+    volumes:
+      - .:/app
+    command: gunicorn --bind 0.0.0.0 --log-level error wsgi:app
+    restart: unless-stopped
+    ports:
+      - "3389:3389"
+    environment:
+      FLASK_SETTINGS_MODULE: 'server_monitor.settings-prod'
+
+
+  worker:
+    image: linmingwang/monitor:latest
+    volumes:
+      - .:/app
+    command: python monitor_worker/main.py
+    restart: unless-stopped
+    environment:
+      PYTHONPATH: '${PYTHONPATH}:/app/monitor_worker'
+      PYTHONUNBUFFERED: '1'
+      TZ: 'Asia/Shanghai'
+      FLASK_SETTINGS_MODULE: 'server_monitor.settings-prod'
+
+
+
+  mongodb:
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
+
+
+

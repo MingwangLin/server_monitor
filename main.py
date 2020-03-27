@@ -1,4 +1,4 @@
-from web_app import init_app
+from server_monitor import init_app
 
 
 def rebuild_db():

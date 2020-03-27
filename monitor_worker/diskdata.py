@@ -2,11 +2,8 @@ import subprocess
 import time
 import pymongo
 from pymongo import MongoClient
-from common import log
+from monitor_worker.mongo_client import db
 
-client = MongoClient()
-db = client.serverData
-db.disk.create_index([("timestamp", pymongo.DESCENDING)])
 
 
 async def save_disk_info():
@@ -32,12 +29,3 @@ async def save_disk_info():
                     }
                 )
     return
-#
-# def main():
-#     # db.disk.delete_many({})
-#     disk_info = disk_info_output()
-#     save_disk_info(disk_info)
-#
-#
-# if __name__ == '__main__':
-#     main()
