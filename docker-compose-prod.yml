@@ -29,7 +29,6 @@ services:
       FLASK_SETTINGS_MODULE: 'server_monitor.settings-prod'
 
 
-
   mongodb:
     ports:
       - "27017:27017"
