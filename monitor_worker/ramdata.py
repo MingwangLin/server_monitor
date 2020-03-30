@@ -2,7 +2,7 @@ import subprocess
 import time
 import pymongo
 from pymongo import MongoClient
-from monitor_worker.mongo_client import db
+from repo import db
 
 
 async def save_ram_info():

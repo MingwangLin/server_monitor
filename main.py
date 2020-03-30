@@ -1,4 +1,5 @@
-from server_monitor import init_app
+import os
+from web_app import init_app
 
 
 def rebuild_db():
@@ -9,6 +10,7 @@ def run():
     config = dict(
         debug=True,
     )
+    os.environ['FLASK_SETTINGS_MODULE'] = 'server_monitor.settings'
     init_app().run(**config)
 
 

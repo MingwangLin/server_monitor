@@ -5,13 +5,12 @@ from .treelog import log
 from flask import request
 from flask import render_template
 from pymongo import MongoClient
-
-client = MongoClient()
-db = client.serverData
+from repo import db
 
 
 @api.route('/')
 def homepage_view():
+    print('111')
     return render_template('index.html')
 
 

@@ -3,7 +3,7 @@ import time
 import pymongo
 import asyncio
 from pymongo import MongoClient
-from monitor_worker.mongo_client import db
+from repo import db
 
 
 async def save_cpu_info():
