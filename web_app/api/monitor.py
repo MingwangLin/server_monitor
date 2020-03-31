@@ -4,13 +4,11 @@ from . import api
 from .treelog import log
 from flask import request
 from flask import render_template
-from pymongo import MongoClient
 from repo import db
 
 
 @api.route('/')
 def homepage_view():
-    print('111')
     return render_template('index.html')
 
 

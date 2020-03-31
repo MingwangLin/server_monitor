@@ -1,18 +1,28 @@
-from pymongo import MongoClient
+import os
 import datetime
+from pymongo import MongoClient
+from flask import Flask
 
-client = MongoClient()
-db = client.test_database
-collection = db.test_collection
-print('1')
+os.environ['FLASK_SETTINGS_MODULE'] = 'server_monitor.settings'
 
-post = {"author": "Mike",
-        "text": "My first blog post!",
-        "tags": ["mongodb", "python", "pymongo"],
-        "date": datetime.datetime.utcnow()}
+app = Flask(__name__)
+config = os.environ['FLASK_SETTINGS_MODULE']
+app.config.from_object(config)
 
-posts = db.posts
-print('posts', posts)
+with app.app_context():
+    client = MongoClient(host=app.config.get('MONGO_HOST'))
+    print('host', app.config.get('MONGO_HOST'))
+    db = client.serverData
+    collection = db.test_collection
+    print('1')
 
-post_id = posts.insert_one(post).inserted_id
-print('post_id', post_id)
+    post = {"author": "Mike",
+            "text": "My first blog post!",
+            "tags": ["mongodb", "python", "pymongo"],
+            "date": datetime.datetime.utcnow()
+            }
+
+    posts = db.posts
+    print('posts', posts)
+    post_id = posts.insert_one(post).inserted_id
+    print('post_id', post_id)
