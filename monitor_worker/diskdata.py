@@ -3,11 +3,11 @@ import time
 import pymongo
 from pymongo import MongoClient
 from repo import db
-
+from .common import log
 
 
 async def save_disk_info():
-    cmd = ['/usr/bin/iostat -d']
+    cmd = ['/usr/bin/iostat -d 1 2']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     for line in pipe.stdout:
         o = line.decode('utf-8')
@@ -15,17 +15,21 @@ async def save_disk_info():
             o = o.split()
             if len(o) > 0:
                 disk_read_index = 2
-                disk_wrtn_index = 3
                 disk_read = o[disk_read_index]
+                log('disk_read', disk_read)
+
+                disk_wrtn_index = 3
                 disk_wrtn = o[disk_wrtn_index]
-                disk_read = float(disk_read)
-                disk_wrtn = float(disk_wrtn)
+
                 timestamp = int(time.time() * 1000)
-                db.disk.insert_one(
-                    {
-                        "disk_read": disk_read,
-                        "disk_wrtn": disk_wrtn,
-                        "timestamp": timestamp,
-                    }
-                )
+                disk_read_fixed_val = '3.65'
+                if not disk_read == disk_read_fixed_val:
+                    disk_read, disk_wrtn = float(disk_read), float(disk_wrtn)
+                    db.disk.insert_one(
+                        {
+                            "disk_read": disk_read,
+                            "disk_wrtn": disk_wrtn,
+                            "timestamp": timestamp,
+                        }
+                    )
     return

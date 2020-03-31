@@ -4,10 +4,11 @@ import pymongo
 import asyncio
 from pymongo import MongoClient
 from repo import db
+from .common import log
 
 
 async def save_cpu_info():
-    cmd = ['/usr/bin/iostat']
+    cmd = ['/usr/bin/iostat -c 1 2']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     # o = o.split()
     # # log(o)
@@ -23,16 +24,19 @@ async def save_cpu_info():
             if len(o) > 0:
                 cpu_idle_index = -1
                 cpu_idle = o[cpu_idle_index]
-                total = 100
-                timestamp = int(time.time() * 1000)
-                cpu_load = total - float(cpu_idle)
-                cpu_load = round(cpu_load, 2)
-                db.cpu.insert_one(
-                    {
-                        "cpu_load": cpu_load,
-                        "timestamp": timestamp,
-                    }
-                )
+                log('cpu_idle', cpu_idle)
+                fixed_val = '97.90'
+                if not cpu_idle == fixed_val:
+                    total = 100
+                    timestamp = int(time.time() * 1000)
+                    cpu_load = total - float(cpu_idle)
+                    cpu_load = round(cpu_load, 2)
+                    db.cpu.insert_one(
+                        {
+                            "cpu_load": cpu_load,
+                            "timestamp": timestamp,
+                        }
+                    )
     return
 
 
