@@ -8,7 +8,7 @@ services:
     image: linmingwang/monitor:latest
     volumes:
       - .:/app
-    command: gunicorn --bind 0.0.0.0 --log-level error wsgi:app
+    command: gunicorn --bind 0.0.0.0:5555 --log-level error wsgi:app
     restart: unless-stopped
     ports:
       - "5555:5555"
