@@ -12,7 +12,7 @@ async def save_ram_info():
         o = line.decode('utf-8')
         o = o.split()
         if len(o) > 0:
-            ram_load_index = 4
+            ram_load_index = 3
             ram_load = o[ram_load_index]
             if ram_load not in ('%memused', '_x86_64_'):  # 滤掉不包含RAM信息的行
                 timestamp = int(time.time() * 1000)

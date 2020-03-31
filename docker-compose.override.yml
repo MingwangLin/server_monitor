@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    image: monitor:latest
+    image: linmingwang/monitor:latest
     volumes:
       - .:/app
     command: gunicorn --bind 0.0.0.0 --log-level error wsgi:app
@@ -17,7 +17,7 @@ services:
 
 
   worker:
-    image: monitor:latest
+    image: linmingwang/monitor:latest
     volumes:
       - .:/app
     command: python monitor_worker/main.py
