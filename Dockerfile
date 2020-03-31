@@ -1,6 +1,7 @@
 FROM python:3.7
 
-RUN apt-get install sysstat \
+RUN apt-get -y update \
+  && apt-get install -y sysstat \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
