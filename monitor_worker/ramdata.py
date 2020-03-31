@@ -9,6 +9,7 @@ from .common import log
 async def save_ram_info():
     cmd = ['/usr/bin/sar -r 0']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    timestamp = int(time.time() * 1000)
     for line in pipe.stdout:
         o = line.decode('utf-8')
         o = o.split()
@@ -18,7 +19,6 @@ async def save_ram_info():
             log('o', o)
             log('ram_load', ram_load)
             if ram_load not in ('%memused', '_x86_64_'):  # 滤掉不包含RAM信息的行
-                timestamp = int(time.time() * 1000)
                 try:
                     ram_load = float(ram_load)
                 except ValueError as e:
