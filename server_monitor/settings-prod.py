@@ -1,4 +1,4 @@
 # mongodb
-MONGO_HOST = '127.0.0.1'
+MONGO_HOST = '47.98.46.70'
 
 SECRET_KEY = '077ca4db22cc258b60ec6c71ffbb9961b702c47bbd16790e'
