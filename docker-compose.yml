@@ -4,7 +4,6 @@ services:
   web:
     depends_on:
       - mongodb
-      - worker
     environment:
       PYTHONUNBUFFERED: '1'
       TZ: 'Asia/Shanghai'
