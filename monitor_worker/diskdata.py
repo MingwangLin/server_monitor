@@ -7,7 +7,7 @@ from .common import log
 
 
 async def save_disk_info():
-    cmd = ['/usr/bin/iostat -d 1 2']
+    cmd = ['/usr/bin/iostat -d 1 1']
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     disk_read, disk_wrtn = 0, 0
     timestamp = int(time.time() * 1000)
@@ -23,9 +23,7 @@ async def save_disk_info():
                 disk_wrtn_index = 3
                 disk_wrtn = o[disk_wrtn_index]
 
-                disk_read_fixed_val = '3.65'
-                if not disk_read == disk_read_fixed_val:
-                    disk_read, disk_wrtn = float(disk_read), float(disk_wrtn)
+                disk_read, disk_wrtn = float(disk_read), float(disk_wrtn)
     db.disk.insert_one(
         {
             "disk_read": disk_read,
